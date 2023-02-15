@@ -9,6 +9,7 @@ export const TextFieldWrapper = ({ name, ...otherProps }) => {
     ...otherProps,
     ...field,
     fullWidth: true,
+    size: "small",
     variant: "outlined"
   }
 

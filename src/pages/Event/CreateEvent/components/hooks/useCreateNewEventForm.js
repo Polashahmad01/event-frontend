@@ -29,9 +29,15 @@ const FORM_VALIDATION = Yup.object().shape({
 })
 
 export const useCreateNewEventForm = () => {
+  const eventFormHandler = (values, actions) => {
+    console.log(values)
+    console.log(actions)
+    actions.resetForm()
+  }
 
   return {
     INITIAL_FORM_STATE,
-    FORM_VALIDATION
+    FORM_VALIDATION,
+    eventFormHandler
   }
 }
