@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 
 import { useCreateNewEventForm } from "./hooks/useCreateNewEventForm"
 import { TextFieldWrapper } from "../../../../components/form/TextField"
+import { SelectField } from "../../../../components/form/SelectField"
 
 export const CreateNewEventForm = () => {
   const {
@@ -72,9 +73,10 @@ export const CreateNewEventForm = () => {
                 </Grid2>
 
                 <Grid2 xs={6}>
-                  <TextFieldWrapper
+                  <SelectField
                     name="contentType"
                     label="Content Type"
+                    options={[{ id: "1", label: "google_doc", value: "Google Doc" }, { id: "2", label: "link", value: "Link" }, { id: "3", label: "pdf", value: "PDF" }, { id: "4", label: "youtube", value: "YouTube"},]}
                   />
                 </Grid2>
 
