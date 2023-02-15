@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack"
 import { Typography } from "@mui/material"
 import Button from "@mui/material/Button"
 import Divider from "@mui/material/Divider"
+import { Link } from "react-router-dom"
 
 import { useCreateNewEventForm } from "./hooks/useCreateNewEventForm"
 import { TextFieldWrapper } from "../../../../components/form/TextField"
@@ -12,7 +13,8 @@ import { TextFieldWrapper } from "../../../../components/form/TextField"
 export const CreateNewEventForm = () => {
   const {
     INITIAL_FORM_STATE,
-    FORM_VALIDATION
+    FORM_VALIDATION,
+    eventFormHandler
         } = useCreateNewEventForm()
 
   return (
@@ -29,7 +31,7 @@ export const CreateNewEventForm = () => {
           ...INITIAL_FORM_STATE
         }}
         validationSchema={FORM_VALIDATION}
-        onSubmit={value => console.log(value)}
+        onSubmit={eventFormHandler}
       >
         <Form>
         
@@ -130,38 +132,123 @@ export const CreateNewEventForm = () => {
                 />
               </Grid2>
 
-          {/* <Grid2 container rowSpacing={3}>
+              <Grid2 container rowSpacing={3}>
                 <Grid2 xs={12} sm={4} md={4} lg={4} pr={3}></Grid2>
-                <Grid2 xs={12} sm={8} md={8} lg={8}>
+                <Grid2 xs={12} sm={12} md={12} lg={12}>
                   <Stack direction="row" alignItems="center" justifyContent="space-between" flexWrap="wrap">
-                    <Button variant="text">
-                      Cancel
-                    </Button>
-                    <Button variant="contained" type="submit">
+                    <Link to="/event">
+                      <Button
+                        size="small"
+                        variant="string"
+                        disableRipple={true}
+                        sx={{
+                          cursor: "pointer",
+                          padding: "0.3rem 1rem",
+                          borderRadius: "4px",
+                          border: "none",
+                          fontWeight: "500",
+                          fontSize: "0.8rem",
+                          textTransform: "revert",
+                          backgroundColor: "black",
+                          color: "white",
+                          transition: "all 0.3s ease-in",
+                          '&:hover': {
+                            backgroundColor: "#F79B67",
+                            color: "white"
+                          }
+                        }}
+                      >
+                        Cancel
+                      </Button>
+                    </Link>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      disableRipple={true}
+                      sx={{
+                        cursor: "pointer",
+                        padding: "0.3rem 1rem",
+                        borderRadius: "4px",
+                        border: "none",
+                        fontWeight: "500",
+                        fontSize: "0.8rem",
+                        textTransform: "revert",
+                        backgroundColor: "black",
+                        color: "white",
+                        transition: "all 0.3s ease-in",
+                        '&:hover': {
+                          backgroundColor: "#F79B67",
+                          color: "white"
+                        }
+                      }}
+                    >
                       Save
                     </Button>
                   </Stack>
                 </Grid2>
-              </Grid2> */}
+              </Grid2>
 
-              {/* <Divider /> */}
-              <Grid2 mt={2} xs={12} sm={12} md={12} lg={12}>
+
+              <Divider sx={{ marginY: "2rem"}} />
+
+            </Grid2>
+
+              <Grid2 xs={12} sm={12} md={12} lg={12}>
                 <Stack direction="row" justifyContent="space-between">
                   <Stack spacing={2} direction="row" justifyContent="flex-end" alignItems="center">
-                    <Button variant="contained">
+                    <Button
+                      variant="contained"
+                      type="button"
+                      disableRipple={true}
+                      disabled={true}
+                      sx={{
+                        cursor: "pointer",
+                        padding: "0.3rem 1rem",
+                        borderRadius: "4px",
+                        border: "none",
+                        fontWeight: "500",
+                        fontSize: "0.8rem",
+                        textTransform: "revert",
+                        backgroundColor: "black",
+                        color: "white",
+                        transition: "all 0.3s ease-in",
+                        '&:hover': {
+                          backgroundColor: "#F79B67",
+                          color: "white"
+                        }
+                      }}
+                    >
                       Publish
                     </Button>
-                    <Button variant="contained">
+                    <Button
+                      variant="contained"
+                      type="button"
+                      disableRipple={true}
+                      disabled={true}
+                      sx={{
+                        cursor: "pointer",
+                        padding: "0.3rem 1rem",
+                        borderRadius: "4px",
+                        border: "none",
+                        fontWeight: "500",
+                        fontSize: "0.8rem",
+                        textTransform: "revert",
+                        backgroundColor: "black",
+                        color: "white",
+                        transition: "all 0.3s ease-in",
+                        '&:hover': {
+                          backgroundColor: "#F79B67",
+                          color: "white"
+                        }
+                      }}
+                    >
                       Unpublish
                     </Button>
                   </Stack>
                 </Stack>
               </Grid2>
 
-            </Grid2>
-
           </Grid2>
-
         </Form>
       </Formik>
     </Box>
