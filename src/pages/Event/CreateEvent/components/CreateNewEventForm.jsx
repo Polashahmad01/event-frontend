@@ -13,8 +13,9 @@ import { SelectField } from "../../../../components/form/SelectField"
 
 export const CreateNewEventForm = () => {
   const {
-    INITIAL_FORM_STATE,
-    FORM_VALIDATION,
+    initialFormState,
+    formValidation,
+    contentTypes,
     eventFormHandler
         } = useCreateNewEventForm()
 
@@ -29,9 +30,9 @@ export const CreateNewEventForm = () => {
     >
       <Formik
         initialValues={{
-          ...INITIAL_FORM_STATE
+          ...initialFormState
         }}
-        validationSchema={FORM_VALIDATION}
+        validationSchema={formValidation}
         onSubmit={eventFormHandler}
       >
         <Form>
@@ -76,7 +77,7 @@ export const CreateNewEventForm = () => {
                   <SelectField
                     name="contentType"
                     label="Content Type"
-                    options={[{ id: "1", label: "google_doc", value: "Google Doc" }, { id: "2", label: "link", value: "Link" }, { id: "3", label: "pdf", value: "PDF" }, { id: "4", label: "youtube", value: "YouTube"},]}
+                    options={contentTypes}
                   />
                 </Grid2>
 

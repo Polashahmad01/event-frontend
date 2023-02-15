@@ -28,6 +28,29 @@ const FORM_VALIDATION = Yup.object().shape({
     .required("description is required")
 })
 
+const CONTENT_TYPES = [
+  { 
+    id: "1", 
+    label: "google_doc", 
+    value: "Google Doc" 
+  },
+  { 
+    id: "2", 
+    label: "link", 
+    value: "Link" 
+  },
+  { 
+    id: "3", 
+    label: "pdf", 
+    value: "PDF" 
+  }, 
+  { 
+    id: "4", 
+    label: "youtube", 
+    value: "YouTube"
+  }
+]
+
 export const useCreateNewEventForm = () => {
   const eventFormHandler = (values, actions) => {
     console.log(values)
@@ -36,8 +59,9 @@ export const useCreateNewEventForm = () => {
   }
 
   return {
-    INITIAL_FORM_STATE,
-    FORM_VALIDATION,
+    initialFormState: INITIAL_FORM_STATE,
+    formValidation: FORM_VALIDATION,
+    contentTypes: CONTENT_TYPES,
     eventFormHandler
   }
 }
