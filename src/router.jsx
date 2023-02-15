@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 
 import { RootAppLayout } from "./layout/RootAppLayout"
 
-import { HomePage } from "./pages/Home"
+import { HomePage } from "./pages/Home/Index"
 import { EventListingPage } from "./pages/Event/Index/Index"
 import { CreateNewEventPage } from "./pages/Event/CreateEvent/Index"
 import { EventDetailPage } from "./pages/Event/EventDetail/Index"
