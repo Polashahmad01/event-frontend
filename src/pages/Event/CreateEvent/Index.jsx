@@ -1,11 +1,12 @@
 import { Box } from "@mui/system"
-import { Typography } from "@mui/material"
+
+import { CreateNewEventForm } from "./components/CreateNewEventForm"
 
 export const CreateNewEventPage = () => {
 
   return (
     <Box>
-      <Typography textAlign="center">This is create new event page</Typography>
+      <CreateNewEventForm />
     </Box>
   )
 }
