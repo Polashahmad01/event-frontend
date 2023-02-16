@@ -80,14 +80,6 @@ export const CreateNewEventForm = () => {
                     options={contentTypes}
                   />
                 </Grid2>
-
-                <Grid2 xs={12}>
-                  <TextFieldWrapper
-                    name="tag"
-                    label="Tags"
-                  />
-                </Grid2>
-
               </Grid2>
             </Grid2>
 
