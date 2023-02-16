@@ -1,5 +1,7 @@
 import * as Yup from "yup"
 
+import { YOUTUBE_URL_REGEXP as youtubeUrl } from "../../../../../lib/constants"
+
 const INITIAL_FORM_STATE = {
   title: "",
   author: "",
@@ -21,6 +23,7 @@ const FORM_VALIDATION = Yup.object().shape({
   tag: Yup.string()
     .required("tag is required"),
   contentUrl: Yup.string()
+    .matches(youtubeUrl, "invalid content url")
     .required('content url is required'),
   summary: Yup.string()
     .required("summary is required"),
