@@ -5,10 +5,11 @@ import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 import { Typography } from "@mui/material"
 
-
+import { useCreateTagForm } from "./hooks/useCreateTagForm"
 import { TextFieldWrapper } from "../../../components/form/TextField"
 
 export const CreateTagForm = () => {
+  const { initialTagFormState, tagFormValidation, tagsFormHandler } = useCreateTagForm()
 
   return (
     <Box
@@ -20,9 +21,11 @@ export const CreateTagForm = () => {
       }}
     >
       <Formik
-        initialValues={{}}
-        validationSchema={""}
-        onSubmit={""}
+        initialValues={{
+          ...initialTagFormState
+        }}
+        validationSchema={tagFormValidation}
+        onSubmit={tagsFormHandler}
       >
         <Form>
           <Grid2 container rowSpacing={2}>
@@ -48,13 +51,13 @@ export const CreateTagForm = () => {
             <Grid2 xs={12} sm={8} lg={8}>
               <Grid2 xs={12}>
                 <TextFieldWrapper
-                  name="tags"
+                  name="tagName"
                   label="Add new tags..."
                 />
               </Grid2>
               <Grid2 xs={12}>
                 <TextFieldWrapper
-                  name="description"
+                  name="tagDescription"
                   label="Add description to your tag"
                   multiline={true}
                   rows={4}
@@ -64,6 +67,7 @@ export const CreateTagForm = () => {
                 <Stack direction="row" alignItems="center" justifyContent="flex-end" flexWrap="wrap">
                   <Button
                     fullWidth={false}
+                    type="submit"
                     sx={{
                       cursor: "pointer",
                       padding: "0.3rem 1rem",
