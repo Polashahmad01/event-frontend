@@ -10,12 +10,14 @@ import { Link } from "react-router-dom"
 import { useCreateNewEventForm } from "./hooks/useCreateNewEventForm"
 import { TextFieldWrapper } from "../../../../components/form/TextField"
 import { SelectField } from "../../../../components/form/SelectField"
+import { TagsField } from "../../../../components/form/TagsField"
 
 export const CreateNewEventForm = () => {
   const {
     initialFormState,
     formValidation,
     contentTypes,
+    tags,
     eventFormHandler
         } = useCreateNewEventForm()
 
@@ -80,6 +82,15 @@ export const CreateNewEventForm = () => {
                     options={contentTypes}
                   />
                 </Grid2>
+
+                <Grid2 xs={12}>
+                  <TagsField
+                    name="tags"
+                    label="Tags"
+                    tags={tags}
+                  />
+                </Grid2>
+
               </Grid2>
             </Grid2>
 

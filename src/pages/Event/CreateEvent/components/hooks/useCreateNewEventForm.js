@@ -6,6 +6,7 @@ const INITIAL_FORM_STATE = {
   title: "",
   author: "",
   contentType: "",
+  tags: [],
   contentUrl: "",
   summary: "",
   description: ""
@@ -19,6 +20,8 @@ const FORM_VALIDATION = Yup.object().shape({
     .required("author is required"),
   contentType: Yup.string()
     .required('content type is required'),
+  // tags: Yup.string()
+  //   .required("tag is required"),
   contentUrl: Yup.string()
     .matches(youtubeUrl, "invalid content url")
     .required('content url is required'),
@@ -51,6 +54,24 @@ const CONTENT_TYPES = [
   }
 ]
 
+const TAGS = [
+  {
+    order: 1,
+    tagName: "Nice Tag",
+    tagDecription: "Nice tag description"
+  },
+  {
+    order: 2,
+    tagName: "Best Tag",
+    tagDecription: "Best tag description"
+  },
+  {
+    order: 3,
+    tagName: "Better Tag",
+    tagDecription: "Better tag description"
+  }
+]
+
 export const useCreateNewEventForm = () => {
   const eventFormHandler = (values, actions) => {
     console.log(values)
@@ -61,6 +82,7 @@ export const useCreateNewEventForm = () => {
     initialFormState: INITIAL_FORM_STATE,
     formValidation: FORM_VALIDATION,
     contentTypes: CONTENT_TYPES,
+    tags: TAGS,
     eventFormHandler
   }
 }
