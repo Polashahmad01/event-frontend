@@ -7,6 +7,7 @@ import { EventListingPage } from "./pages/Event/Index/Index"
 import { CreateNewEventPage } from "./pages/Event/CreateEvent/Index"
 import { EventDetailPage } from "./pages/Event/EventDetail/Index"
 import { EditEventPage } from "./pages/Event/EditEvent/Index"
+import { TagIndexPage } from "./pages/Tag/Index"
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "event/:eventId/edit",
         element: <EditEventPage />
+      },
+      {
+        path: "tags/new",
+        element: <TagIndexPage />
       }
     ]
   }

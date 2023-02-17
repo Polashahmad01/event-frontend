@@ -65,7 +65,7 @@ export const EventAndTagBanner = () => {
                 Add Event
               </Typography>
             </Link>
-            <Link to="#">
+            <Link to="/tags/new">
               <Typography
                 variant="subtitle2"
                 component="button"
