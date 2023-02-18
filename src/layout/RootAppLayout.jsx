@@ -24,6 +24,7 @@ export const RootAppLayout = () => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
+            theme="colored"
           />
         </Container>
       </Box>
