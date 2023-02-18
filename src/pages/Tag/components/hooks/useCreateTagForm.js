@@ -1,4 +1,8 @@
+import { useMemo } from "react"
 import * as Yup from "yup"
+
+import { TagsHttpClient } from "../../../../lib/http/TagsHttpClient"
+import { useNotification } from "../../../../hooks/useNotification"
 
 const INITIAL_TAG_STATE = {
   tagName: "",
@@ -14,24 +18,12 @@ const FORM_VALIDATION = Yup.object().shape({
     .required('tag description is required')
 })
 
+const defaultSuccessMessage = "Tag has been successfully created"
+const defaultErrorMessage = "This tag is already been created. Please choose another tag name"
+
 export const useCreateTagForm = () => {
-
-  const postTagData = async (data) => {
-    const response = await fetch('https://event-backend.vercel.app/api/v1/tags', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-
-    if(!response.ok) {
-      throw new Error(`request error ${method} https://event-backend.vercel.app/api/v1/tags statusCode: ${response.status} statusText: ${response.statusText}`)
-    }
-    
-    const result = await response.json()
-    return result
-  }
+  const { notifySuccess, notifyError } = useNotification()
+  const tagsHttpClient = useMemo(() => new TagsHttpClient())
 
   const tagsFormHandler = async (values, actions) => {
     const formData = {
@@ -39,11 +31,14 @@ export const useCreateTagForm = () => {
       tagDescription: values.tagDescription
     }
 
-    const data = await postTagData(formData)
+    const response = await tagsHttpClient.createNewTag(formData)
+    const { data: { acknowledged } } = response
 
-    alert(data.data)
-
-    console.log(data)
+    if(acknowledged === false) {
+      notifyError(defaultErrorMessage)
+    } else {
+      notifySuccess(defaultSuccessMessage)
+    }
   }
 
   return {
