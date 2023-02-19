@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { useState, useEffect, useMemo } from "react"
 import * as Yup from "yup"
 
 import { YOUTUBE_URL_REGEXP as youtubeUrl } from "../../../../../lib/constants"
@@ -58,28 +58,11 @@ const CONTENT_TYPES = [
   }
 ]
 
-const TAGS = [
-  {
-    order: 1,
-    tagName: "Nice Tag",
-    tagDecription: "Nice tag description"
-  },
-  {
-    order: 2,
-    tagName: "Best Tag",
-    tagDecription: "Best tag description"
-  },
-  {
-    order: 3,
-    tagName: "Better Tag",
-    tagDecription: "Better tag description"
-  }
-]
-
 const defaultSuccessMessage = "Event has been successfully created"
 const defaultErrorMessage = "This event title is already been taken. Please choose another title"
 
 export const useCreateNewEventForm = () => {
+  const [tags, setTags] = useState([])
   const { notifySuccess, notifyError } = useNotification()
   const eventHttpClient = useMemo(() => new EventHttpClient())
 
@@ -107,11 +90,20 @@ export const useCreateNewEventForm = () => {
     }
   }
 
+  useEffect(() => {
+    const fetchTags = async () => {
+      const response = await eventHttpClient.getAllTags()
+      setTags(response.data)
+    }
+  
+    fetchTags()
+  },[])
+
   return {
     initialFormState: INITIAL_FORM_STATE,
     formValidation: FORM_VALIDATION,
     contentTypes: CONTENT_TYPES,
-    tags: TAGS,
+    tags,
     eventFormHandler
   }
 }
