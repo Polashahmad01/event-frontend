@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { Formik, Form } from "formik"
 import { Box } from "@mui/system"
 import Grid2 from "@mui/material/Unstable_Grid2"
@@ -64,7 +65,32 @@ export const CreateTagForm = () => {
                 />
               </Grid2>
               <Grid2 xs={12}>
-                <Stack direction="row" alignItems="center" justifyContent="flex-end" flexWrap="wrap">
+                <Stack direction="row" alignItems="center" justifyContent="space-between" flexWrap="wrap">
+                  <Link to="/event">
+                    <Button
+                      size="small"
+                      variant="string"
+                      disableRipple={true}
+                      sx={{
+                        cursor: "pointer",
+                        padding: "0.3rem 1rem",
+                        borderRadius: "4px",
+                        border: "none",
+                        fontWeight: "500",
+                        fontSize: "0.8rem",
+                        textTransform: "revert",
+                        backgroundColor: "black",
+                        color: "white",
+                        transition: "all 0.3s ease-in",
+                        '&:hover': {
+                          backgroundColor: "#F79B67",
+                          color: "white"
+                        }
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </Link>
                   <Button
                     fullWidth={false}
                     type="submit"
