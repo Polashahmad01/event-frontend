@@ -77,8 +77,8 @@ export const CreateNewEventForm = () => {
 
                 <Grid2 xs={6}>
                   <SelectField
-                    name="contentType"
-                    label="Content Type"
+                    name="eventType"
+                    label="Event Type"
                     options={contentTypes}
                   />
                 </Grid2>
