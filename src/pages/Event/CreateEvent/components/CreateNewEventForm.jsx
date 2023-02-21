@@ -11,8 +11,7 @@ import { useCreateNewEventForm } from "./hooks/useCreateNewEventForm"
 import { TextFieldWrapper } from "../../../../components/form/TextField"
 import { SelectField } from "../../../../components/form/SelectField"
 import { TagsField } from "../../../../components/form/TagsField"
-
-import { useDropzone } from "react-dropzone"
+import { FileUpload } from "../../../../components/form/FileUpload"
 
 export const CreateNewEventForm = () => {
   const {
@@ -25,17 +24,6 @@ export const CreateNewEventForm = () => {
     showFileUploadHandler,
     setUploadFile
         } = useCreateNewEventForm()
-
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
-    multiple: false,
-    accept: {
-      'application/pdf': ['.pdf']
-    },
-    onDrop: (acceptedFile) => {
-      setUploadFile(acceptedFile[0])
-    }
-  })
-
 
   return (
     <Box
@@ -156,16 +144,7 @@ export const CreateNewEventForm = () => {
               </Grid2>
 
               <Grid2 xs={12}>
-                {isShowFileUpload && (
-                  <div {...getRootProps()}>
-                    <input
-                      {...getInputProps()}
-                    />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                    <h4>Files</h4>
-                    <ul>{acceptedFiles[0]?.name}</ul>
-                  </div>
-                )}
+                  {isShowFileUpload && <FileUpload setUploadFile={setUploadFile}/>}
               </Grid2>
 
               <Grid2 container rowSpacing={3}>
