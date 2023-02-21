@@ -64,6 +64,7 @@ const defaultErrorMessage = "This event title is already been taken. Please choo
 export const useCreateNewEventForm = () => {
   const [tags, setTags] = useState([])
   const [isShowFileUpload, setIsShowFileUpload] = useState(false)
+  const [uploadFile, setUploadFile] = useState([])
   const { notifySuccess, notifyError } = useNotification()
   const eventHttpClient = useMemo(() => new EventHttpClient())
 
@@ -89,14 +90,16 @@ export const useCreateNewEventForm = () => {
       isUnPublished: values.isPublished || false
     }
 
-    const response = await eventHttpClient.createNewEvent(newEventFormData)
-    const { data: { acknowledged }} = response
+    // const response = await eventHttpClient.createNewEvent(newEventFormData)
+    // const { data: { acknowledged }} = response
 
-    if(acknowledged === false) {
-      notifyError(defaultErrorMessage)
-    } else {
-      notifySuccess(defaultSuccessMessage)
-    }
+    // if(acknowledged === false) {
+    //   notifyError(defaultErrorMessage)
+    // } else {
+    //   notifySuccess(defaultSuccessMessage)
+    // }
+    console.log('uploadFile', uploadFile)
+    console.log('newEventFormData', newEventFormData)
   }
 
   useEffect(() => {
@@ -115,6 +118,7 @@ export const useCreateNewEventForm = () => {
     tags,
     isShowFileUpload,
     eventFormHandler,
-    showFileUploadHandler
+    showFileUploadHandler,
+    setUploadFile
   }
 }
