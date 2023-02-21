@@ -63,8 +63,17 @@ const defaultErrorMessage = "This event title is already been taken. Please choo
 
 export const useCreateNewEventForm = () => {
   const [tags, setTags] = useState([])
+  const [isShowFileUpload, setIsShowFileUpload] = useState(false)
   const { notifySuccess, notifyError } = useNotification()
   const eventHttpClient = useMemo(() => new EventHttpClient())
+
+  const showFileUploadHandler = (event) => {
+    if (event.target.dataset.value === CONTENT_TYPES[2].label) {
+      setIsShowFileUpload(true)
+    } else {
+      setIsShowFileUpload(false)
+    }
+  }
 
   const eventFormHandler = async (values, actions) => {
     const newEventFormData = {
@@ -104,6 +113,8 @@ export const useCreateNewEventForm = () => {
     formValidation: FORM_VALIDATION,
     contentTypes: CONTENT_TYPES,
     tags,
-    eventFormHandler
+    isShowFileUpload,
+    eventFormHandler,
+    showFileUploadHandler
   }
 }

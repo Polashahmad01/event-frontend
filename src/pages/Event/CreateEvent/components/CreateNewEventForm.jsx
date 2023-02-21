@@ -18,7 +18,9 @@ export const CreateNewEventForm = () => {
     formValidation,
     contentTypes,
     tags,
-    eventFormHandler
+    isShowFileUpload,
+    eventFormHandler,
+    showFileUploadHandler
         } = useCreateNewEventForm()
 
   return (
@@ -80,6 +82,7 @@ export const CreateNewEventForm = () => {
                     name="eventType"
                     label="Event Type"
                     options={contentTypes}
+                    onClick={showFileUploadHandler}
                   />
                 </Grid2>
 
@@ -136,6 +139,10 @@ export const CreateNewEventForm = () => {
                   multiline={true}
                   rows={4}
                 />
+              </Grid2>
+
+              <Grid2 xs={12}>
+                {isShowFileUpload && <TextFieldWrapper name="File Upload"/>}
               </Grid2>
 
               <Grid2 container rowSpacing={3}>
