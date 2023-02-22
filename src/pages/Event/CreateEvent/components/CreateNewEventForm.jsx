@@ -20,9 +20,11 @@ export const CreateNewEventForm = () => {
     contentTypes,
     tags,
     isShowFileUpload,
+    progress,
     eventFormHandler,
     showFileUploadHandler,
-    setUploadFile
+    setUploadFile,
+    setHasValidFileType
         } = useCreateNewEventForm()
 
   return (
@@ -144,7 +146,12 @@ export const CreateNewEventForm = () => {
               </Grid2>
 
               <Grid2 xs={12}>
-                  {isShowFileUpload && <FileUpload setUploadFile={setUploadFile}/>}
+                  {isShowFileUpload && 
+                    <FileUpload 
+                      setUploadFile={setUploadFile} 
+                      progress={progress}
+                      setHasValidFileType={setHasValidFileType}
+                  />}
               </Grid2>
 
               <Grid2 container rowSpacing={3}>

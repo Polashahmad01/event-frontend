@@ -2,7 +2,7 @@ import { useDropzone } from "react-dropzone"
 import { Stack } from "@mui/system"
 import { Typography } from "@mui/material"
 
-export const FileUpload = ({ setUploadFile }) => {
+export const FileUpload = ({ setUploadFile, progress, setHasValidFileType }) => {
   const { acceptedFiles, fileRejections, isFocused, isDragAccept, isDragReject, getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: {
@@ -10,6 +10,7 @@ export const FileUpload = ({ setUploadFile }) => {
     },
     onDrop: (acceptedFile) => {
       setUploadFile(acceptedFile[0])
+      setHasValidFileType(true)
     }
   })
 
@@ -53,6 +54,9 @@ export const FileUpload = ({ setUploadFile }) => {
           </Typography>
           <Typography component="em" variant="body2" color="grey.400">
             {acceptedFiles && acceptedFiles.length !== 0 && `${acceptedFiles[0]?.name}`}
+          </Typography>
+          <Typography component="em" variant="body2" color="grey.400">
+            {progress && `Uploaded ${progress}%`}
           </Typography>
           <Typography component="em" variant="body2" color="grey.400">
             {fileRejections.length > 0 && "Unsupported file type. Please choose pdf file only."}

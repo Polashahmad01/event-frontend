@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react"
 import * as Yup from "yup"
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 
+import { storage } from "../../../../../lib/firebase"
 import { YOUTUBE_URL_REGEXP as youtubeUrl } from "../../../../../lib/constants"
 import { EventHttpClient } from "../../../../../lib/http/EventHttpClient"
 import { useNotification } from "../../../../../hooks/useNotification"
@@ -65,6 +67,9 @@ export const useCreateNewEventForm = () => {
   const [tags, setTags] = useState([])
   const [isShowFileUpload, setIsShowFileUpload] = useState(false)
   const [uploadFile, setUploadFile] = useState([])
+  const [hasValidFileType, setHasValidFileType] = useState(false)
+  const [fileUrl, setFileUrl] = useState("")
+  const [progress, setProgress] = useState(0)
   const { notifySuccess, notifyError } = useNotification()
   const eventHttpClient = useMemo(() => new EventHttpClient())
 
@@ -87,19 +92,18 @@ export const useCreateNewEventForm = () => {
       description: values.description,
       isSaved: true,
       isPublished: values.isPublished || false,
-      isUnPublished: values.isPublished || false
+      isUnPublished: values.isPublished || false,
+      imageUrl: fileUrl || "undefined"
     }
 
-    // const response = await eventHttpClient.createNewEvent(newEventFormData)
-    // const { data: { acknowledged }} = response
+    const response = await eventHttpClient.createNewEvent(newEventFormData)
+    const { data: { acknowledged }} = response
 
-    // if(acknowledged === false) {
-    //   notifyError(defaultErrorMessage)
-    // } else {
-    //   notifySuccess(defaultSuccessMessage)
-    // }
-    console.log('uploadFile', uploadFile)
-    console.log('newEventFormData', newEventFormData)
+    if(acknowledged === false) {
+      notifyError(defaultErrorMessage)
+    } else {
+      notifySuccess(defaultSuccessMessage)
+    }
   }
 
   useEffect(() => {
@@ -111,14 +115,42 @@ export const useCreateNewEventForm = () => {
     fetchTags()
   },[])
 
+  const uploadFileHandler = (file) => {
+    if(!file) {
+      return
+    }
+
+    const storageRef = ref(storage, `/files/event-image/${file.name}`)
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on("state_changed", (snapshot) => {
+      const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+      setProgress(prog)
+    },
+    (err) => console.log(err),
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref)
+        .then((url) => setFileUrl(url))
+    }
+    )
+  }
+
+  useEffect(() => {
+    if(hasValidFileType) {
+      uploadFileHandler(uploadFile)
+    }
+  },[hasValidFileType])
+
   return {
     initialFormState: INITIAL_FORM_STATE,
     formValidation: FORM_VALIDATION,
     contentTypes: CONTENT_TYPES,
     tags,
     isShowFileUpload,
+    progress,
     eventFormHandler,
     showFileUploadHandler,
-    setUploadFile
+    setUploadFile,
+    setHasValidFileType
   }
 }
