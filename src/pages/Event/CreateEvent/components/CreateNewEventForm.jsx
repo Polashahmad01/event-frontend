@@ -11,6 +11,7 @@ import { useCreateNewEventForm } from "./hooks/useCreateNewEventForm"
 import { TextFieldWrapper } from "../../../../components/form/TextField"
 import { SelectField } from "../../../../components/form/SelectField"
 import { TagsField } from "../../../../components/form/TagsField"
+import { FileUpload } from "../../../../components/form/FileUpload"
 
 export const CreateNewEventForm = () => {
   const {
@@ -18,7 +19,12 @@ export const CreateNewEventForm = () => {
     formValidation,
     contentTypes,
     tags,
-    eventFormHandler
+    isShowFileUpload,
+    progress,
+    eventFormHandler,
+    showFileUploadHandler,
+    setUploadFile,
+    setHasValidFileType
         } = useCreateNewEventForm()
 
   return (
@@ -80,6 +86,7 @@ export const CreateNewEventForm = () => {
                     name="eventType"
                     label="Event Type"
                     options={contentTypes}
+                    onClick={showFileUploadHandler}
                   />
                 </Grid2>
 
@@ -136,6 +143,15 @@ export const CreateNewEventForm = () => {
                   multiline={true}
                   rows={4}
                 />
+              </Grid2>
+
+              <Grid2 xs={12}>
+                  {isShowFileUpload && 
+                    <FileUpload 
+                      setUploadFile={setUploadFile} 
+                      progress={progress}
+                      setHasValidFileType={setHasValidFileType}
+                  />}
               </Grid2>
 
               <Grid2 container rowSpacing={3}>
