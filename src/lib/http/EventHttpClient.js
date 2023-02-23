@@ -4,6 +4,8 @@ export class EventHttpClient {
   client = new HttpClient()
 
   createNewEvent = async (eventFormData) => await this.client.post("api/v1/event", eventFormData)
+
+  fetchAllEvents = async () => await this.client.get("api/v1/event")
   
   getAllTags = async () => await this.client.get("api/v1/tags")
 }
