@@ -1,3 +1,4 @@
+import format from "date-fns/format"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
@@ -5,10 +6,14 @@ import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
+import YouTubeIcon from "@mui/icons-material/YouTube"
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"
+import LinkIcon from "@mui/icons-material/Link"
+import ArticleIcon from "@mui/icons-material/Article"
 
 export const EventItem = (props) => {
-  const { title, summary, tags, author } = props.event
-  // console.log(props.event)
+  const { title, summary, tags, author, status, createdAt, eventType } = props.event
+
   return (
     <Card
       variant="outlined"
@@ -18,7 +23,7 @@ export const EventItem = (props) => {
         borderRadius: "7px",
         cursor: "pointer",
         "&:hover": {
-          boxShadow: "0 0 0 2px #efefef"
+          boxShadow: "0 0 0 4px #efefef"
         }
       }}
     >
@@ -38,8 +43,23 @@ export const EventItem = (props) => {
               <Typography component="h1" variant="subtitle1" fontWeight={400}>{title}</Typography>
             </Box>
             <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-              <Typography component="span" variant="body2">Status</Typography>
-              <Typography component="span" variant="body2">Icon</Typography>
+              <Typography component="span" variant="body2">
+                {status === "draft" && <Chip
+                  label={status} 
+                  size="small"
+                  component="p"
+                  sx={{
+                    color: "white",
+                    backgroundColor: "black"
+                  }}
+                />}
+              </Typography>
+              <Typography component="span" variant="body2" sx={{ marginTop: "0.3rem!important" }}>
+                {eventType === "youtube" && <YouTubeIcon />}
+                {eventType === "pdf" && <PictureAsPdfIcon />}
+                {eventType === "link" && <LinkIcon />}
+                {eventType === "google_doc" &&<ArticleIcon />}
+              </Typography>
             </Stack>
           </Stack>
           <Typography component="p" variant="body2" fontWeight={300} marginBottom={2} color="rgb(140, 140, 140)">{summary}</Typography>
@@ -62,7 +82,7 @@ export const EventItem = (props) => {
           <Stack direction="row" justifyContent="flex-end">
             <Stack justifyContent="flex-end">
               <Typography alignSelf="flex-end" component="p" variant="body2" fontWeight={400}>{author}</Typography>
-              <Typography alignSelf="flex-end" component="p" variant="caption" color="rgb(140, 140, 140)" fontWeight={300}>Feb 23, 2023</Typography>
+              <Typography alignSelf="flex-end" component="p" variant="caption" color="rgb(140, 140, 140)" fontWeight={300}>{format(new Date(createdAt), 'MMM dd, yyyy')}</Typography>
             </Stack>
           </Stack>
         </CardContent>
