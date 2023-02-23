@@ -1,3 +1,4 @@
+import format from "date-fns/format"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
@@ -5,11 +6,13 @@ import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
-import format from "date-fns/format"
-
+import YouTubeIcon from "@mui/icons-material/YouTube"
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"
+import LinkIcon from "@mui/icons-material/Link"
+import ArticleIcon from "@mui/icons-material/Article"
 
 export const EventItem = (props) => {
-  const { title, summary, tags, author, status, createdAt } = props.event
+  const { title, summary, tags, author, status, createdAt, eventType } = props.event
 
   return (
     <Card
@@ -41,14 +44,22 @@ export const EventItem = (props) => {
             </Box>
             <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
               <Typography component="span" variant="body2">
-                <Chip
+                {status === "draft" && <Chip
                   label={status} 
                   size="small"
                   component="p"
-                  color="primary"
-                />
+                  sx={{
+                    color: "white",
+                    backgroundColor: "black"
+                  }}
+                />}
               </Typography>
-              <Typography component="span" variant="body2">Icon</Typography>
+              <Typography component="span" variant="body2" sx={{ marginTop: "0.3rem!important" }}>
+                {eventType === "youtube" && <YouTubeIcon />}
+                {eventType === "pdf" && <PictureAsPdfIcon />}
+                {eventType === "link" && <LinkIcon />}
+                {eventType === "google_doc" &&<ArticleIcon />}
+              </Typography>
             </Stack>
           </Stack>
           <Typography component="p" variant="body2" fontWeight={300} marginBottom={2} color="rgb(140, 140, 140)">{summary}</Typography>
