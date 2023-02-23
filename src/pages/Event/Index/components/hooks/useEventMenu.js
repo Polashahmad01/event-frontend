@@ -1,10 +1,13 @@
 import { useState } from "react"
 
+import { useDeleteEvent } from "./useDeleteEvent"
+
 const MENU_HEIGHT = 48
 
-export const useEventMenu = () => {
+export const useEventMenu = (props) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
+  const { eventDeleteHandler } = useDeleteEvent()
 
   const menuClickHandler = event => {
     setAnchorEl(event.currentTarget)
@@ -21,7 +24,7 @@ export const useEventMenu = () => {
 
   const deleteHandler = () => {
     setAnchorEl(null)
-    console.log('deleting...')
+    eventDeleteHandler(props._id)
   }
 
   const publishHandler = () => {
