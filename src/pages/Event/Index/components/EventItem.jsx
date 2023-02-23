@@ -62,6 +62,15 @@ export const EventItem = ({ event }) => {
                     backgroundColor: "black"
                   }}
                 />}
+                {status === "unPublished" && <Chip
+                  label={status} 
+                  size="small"
+                  component="p"
+                  sx={{
+                    color: "white",
+                    backgroundColor: "#F6694D"
+                  }}
+                />}
               </Typography>
               <Typography component="span" variant="body2" sx={{ marginTop: "0.3rem!important" }}>
                 {eventType === "youtube" && <YouTubeIcon />}
