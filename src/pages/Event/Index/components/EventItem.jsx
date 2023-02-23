@@ -11,14 +11,18 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"
 import LinkIcon from "@mui/icons-material/Link"
 import ArticleIcon from "@mui/icons-material/Article"
 
+import { EventMenu } from "./EventMenu"
+import styles from "./styles/EventItem.module.scss"
+
 export const EventItem = (props) => {
   const { title, summary, tags, author, status, createdAt, eventType } = props.event
 
   return (
     <Card
       variant="outlined"
+      className={styles.card}
       sx={{
-        marginBottom: "0.8rem",
+        margin: "2rem 0",
         border: "3px solid #efefef",
         borderRadius: "7px",
         cursor: "pointer",
@@ -27,6 +31,7 @@ export const EventItem = (props) => {
         }
       }}
     >
+      <EventMenu />
       <Card>
         <CardMedia
           component="img"
