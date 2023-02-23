@@ -8,8 +8,8 @@ import Typography from "@mui/material/Typography"
 import { useEventMenu } from "./hooks/useEventMenu"
 import styles from "./styles/EventMenu.module.scss"
 
-export const EventMenu = () => {
-  const { MENU_HEIGHT, open, anchorEl, menuClickHandler, menuCloseHandler, editHandler, deleteHandler, publishHandler, unPublishHandler } = useEventMenu()
+export const EventMenu = ({ event }) => {
+  const { MENU_HEIGHT, open, anchorEl, menuClickHandler, menuCloseHandler, editHandler, deleteHandler, publishHandler, unPublishHandler } = useEventMenu(event)
 
   return (
     <Box className={styles.EventMenu}>

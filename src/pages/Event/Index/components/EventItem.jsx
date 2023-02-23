@@ -15,8 +15,8 @@ import { useEventItem } from "./hooks/useEventItem"
 import { EventMenu } from "./EventMenu"
 import styles from "./styles/EventItem.module.scss"
 
-export const EventItem = (props) => {
-  const { title, summary, tags, author, status, createdAt, eventType } = props.event
+export const EventItem = ({ event }) => {
+  const { title, summary, tags, author, status, createdAt, eventType } = event
   const { isShowEventMenu, onMouseEnterHandler, onMouseLeaveHandler } = useEventItem()
 
   return (
@@ -35,7 +35,7 @@ export const EventItem = (props) => {
         }
       }}
     >
-      {isShowEventMenu && <EventMenu />}
+      {isShowEventMenu && <EventMenu event={event} />}
       <Card>
         <CardMedia
           component="img"
