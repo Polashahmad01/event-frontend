@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import { useDeleteEvent } from "./useDeleteEvent"
 import { usePublishEvent } from "../../../CreateEvent/components/hooks/usePublishEvent"
+import { useUnPublishEvent } from "../../../CreateEvent/components/hooks/useUnPublishEvent"
 
 const MENU_HEIGHT = 48
 
@@ -10,6 +11,7 @@ export const useEventMenu = (props) => {
   const open = Boolean(anchorEl)
   const { eventDeleteHandler } = useDeleteEvent()
   const { publishEventHandler } = usePublishEvent()
+  const { unPublishEventHandler } = useUnPublishEvent()
 
   const menuClickHandler = event => {
     setAnchorEl(event.currentTarget)
@@ -36,7 +38,7 @@ export const useEventMenu = (props) => {
 
   const unPublishHandler = () => {
     setAnchorEl(null)
-    console.log('unPublishing...')
+    unPublishEventHandler(props._id)
   }
 
   return {
