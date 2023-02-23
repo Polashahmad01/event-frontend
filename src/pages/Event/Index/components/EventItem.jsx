@@ -11,16 +11,20 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"
 import LinkIcon from "@mui/icons-material/Link"
 import ArticleIcon from "@mui/icons-material/Article"
 
+import { useEventItem } from "./hooks/useEventItem"
 import { EventMenu } from "./EventMenu"
 import styles from "./styles/EventItem.module.scss"
 
 export const EventItem = (props) => {
   const { title, summary, tags, author, status, createdAt, eventType } = props.event
+  const { isShowEventMenu, onMouseEnterHandler, onMouseLeaveHandler } = useEventItem()
 
   return (
     <Card
       variant="outlined"
       className={styles.card}
+      onMouseEnter={onMouseEnterHandler}
+      onMouseLeave={onMouseLeaveHandler}
       sx={{
         margin: "2rem 0",
         border: "3px solid #efefef",
@@ -31,7 +35,7 @@ export const EventItem = (props) => {
         }
       }}
     >
-      <EventMenu />
+      {isShowEventMenu && <EventMenu />}
       <Card>
         <CardMedia
           component="img"
