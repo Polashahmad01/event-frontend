@@ -93,7 +93,9 @@ export const useCreateNewEventForm = () => {
       isSaved: true,
       isPublished: values.isPublished || false,
       isUnPublished: values.isPublished || false,
-      imageUrl: fileUrl || "undefined"
+      imageUrl: fileUrl || "undefined",
+      status: "draft",
+      createdAt: new Date()
     }
 
     const response = await eventHttpClient.createNewEvent(newEventFormData)

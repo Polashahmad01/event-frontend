@@ -5,10 +5,12 @@ import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
+import format from "date-fns/format"
+
 
 export const EventItem = (props) => {
-  const { title, summary, tags, author } = props.event
-  // console.log(props.event)
+  const { title, summary, tags, author, status, createdAt } = props.event
+
   return (
     <Card
       variant="outlined"
@@ -18,7 +20,7 @@ export const EventItem = (props) => {
         borderRadius: "7px",
         cursor: "pointer",
         "&:hover": {
-          boxShadow: "0 0 0 2px #efefef"
+          boxShadow: "0 0 0 4px #efefef"
         }
       }}
     >
@@ -38,7 +40,14 @@ export const EventItem = (props) => {
               <Typography component="h1" variant="subtitle1" fontWeight={400}>{title}</Typography>
             </Box>
             <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
-              <Typography component="span" variant="body2">Status</Typography>
+              <Typography component="span" variant="body2">
+                <Chip
+                  label={status} 
+                  size="small"
+                  component="p"
+                  color="primary"
+                />
+              </Typography>
               <Typography component="span" variant="body2">Icon</Typography>
             </Stack>
           </Stack>
@@ -62,7 +71,7 @@ export const EventItem = (props) => {
           <Stack direction="row" justifyContent="flex-end">
             <Stack justifyContent="flex-end">
               <Typography alignSelf="flex-end" component="p" variant="body2" fontWeight={400}>{author}</Typography>
-              <Typography alignSelf="flex-end" component="p" variant="caption" color="rgb(140, 140, 140)" fontWeight={300}>Feb 23, 2023</Typography>
+              <Typography alignSelf="flex-end" component="p" variant="caption" color="rgb(140, 140, 140)" fontWeight={300}>{format(new Date(createdAt), 'MMM dd, yyyy')}</Typography>
             </Stack>
           </Stack>
         </CardContent>
