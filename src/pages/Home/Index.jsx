@@ -1,10 +1,11 @@
 import { Box } from "@mui/system"
-import { Typography } from "@mui/material"
+
+import { HomeEventBanner } from "./components/HomeEventBanner"
 
 export const HomePage = () => {
   return (
     <Box>
-      <Typography textAlign="center">This is Home Page</Typography>
+      <HomeEventBanner />
     </Box>
   )
 }
