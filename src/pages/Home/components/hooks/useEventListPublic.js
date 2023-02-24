@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react"
 
 import { EventHttpClient } from "../../../../lib/http/EventHttpClient"
 
-export const useEventList = () => {
+export const useEventListPublic = () => {
   const [events, setEvents] = useState([])
   const eventHttpClient = useMemo(() => new EventHttpClient())
 

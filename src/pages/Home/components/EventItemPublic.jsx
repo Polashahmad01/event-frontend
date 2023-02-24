@@ -11,7 +11,7 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"
 import LinkIcon from "@mui/icons-material/Link"
 import ArticleIcon from "@mui/icons-material/Article"
 
-export const EventItem = ({ event }) => {
+export const EventItemPublic = ({ event }) => {
   const { title, eventType, summary, tags, author, createdAt } = event
 
   return (

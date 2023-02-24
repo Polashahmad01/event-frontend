@@ -2,7 +2,7 @@ import Box from "@mui/system/Box"
 import Typography from "@mui/material/Typography"
 import Stack from "@mui/system/Stack"
 
-export const HomeEventBanner = () => {
+export const HomeEventBannerPublic = () => {
 
   return (
     <Box
