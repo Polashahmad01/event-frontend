@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { useDeleteEvent } from "./useDeleteEvent"
+import { useDeleteEvent } from "../../../CreateEvent/components/hooks/useDeleteEvent"
 import { usePublishEvent } from "../../../CreateEvent/components/hooks/usePublishEvent"
 import { useUnPublishEvent } from "../../../CreateEvent/components/hooks/useUnPublishEvent"
 
