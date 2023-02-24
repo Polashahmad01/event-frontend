@@ -7,6 +7,8 @@ export class EventHttpClient {
 
   fetchAllEvents = async () => await this.client.get("api/v1/event")
 
+  fetchSingleEvent = async (eventId) => await this.client.get(`api/v1/event/${eventId}`)
+
   deleteEvent = async (eventId) => await this.client.delete(`api/v1/event/${eventId}`)
 
   publishEvent = async (eventId, formData) => await this.client.put(`api/v1/event/${eventId}`, formData)

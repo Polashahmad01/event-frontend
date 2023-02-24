@@ -1,13 +1,13 @@
 import { Box } from "@mui/system"
 
-import { HomeEventBanner } from "./components/HomeEventBanner"
-import { EventList } from "./components/EventList"
+import { HomeEventBannerPublic } from "./components/HomeEventBannerPublic"
+import { EventListPublic } from "./components/EventListPublic"
 
 export const HomePage = () => {
   return (
     <Box>
-      <HomeEventBanner />
-      <EventList />
+      <HomeEventBannerPublic />
+      <EventListPublic />
     </Box>
   )
 }
