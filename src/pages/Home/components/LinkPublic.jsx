@@ -18,7 +18,7 @@ export const LinkPublic = ({ event }) => {
     <Box
       marginTop={4}
     >
-      <Grid2 container spacing={2} columnSpacing={16}>
+      <Grid2 container spacing={4}>
         <Grid2 xs={12} md={8} lg={8} xl={8}>
           <Card
             sx={{
@@ -30,7 +30,7 @@ export const LinkPublic = ({ event }) => {
               component="img"
               height="140"
               image="/images/link_background.png"
-              alt="green iguana"
+              alt="Link"
             />
             <CardContent>
               <Button
