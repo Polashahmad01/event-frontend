@@ -13,15 +13,8 @@ export const EventDetailPublic = () => {
   const { eventType } = event
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "#fff",
-        marginTop: "2rem",
-        borderRadius: "5px",
-        padding: "2rem 1.5rem"
-      }}
-    >
-      {eventType && eventType === "link" && <LinkPublic />}
+    <Box>
+      {eventType && eventType === "link" && <LinkPublic event={event} />}
       {eventType && eventType === "youtube" && <YouTubePublic />}
       {eventType && eventType === "pdf" && <PdfPublic />}
       {eventType && eventType === "google_doc" && <GoogleDocPublic />}
