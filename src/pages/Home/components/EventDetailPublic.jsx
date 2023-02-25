@@ -15,7 +15,7 @@ export const EventDetailPublic = () => {
   return (
     <Box>
       {eventType && eventType === "link" && <LinkPublic event={event} />}
-      {eventType && eventType === "youtube" && <YouTubePublic />}
+      {eventType && eventType === "youtube" && <YouTubePublic event={event} />}
       {eventType && eventType === "pdf" && <PdfPublic event={event} />}
       {eventType && eventType === "google_doc" && <GoogleDocPublic event={event} />}
     </Box>
