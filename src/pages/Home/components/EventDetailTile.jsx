@@ -11,8 +11,8 @@ import Stack from "@mui/system/Stack"
 import Divider from "@mui/material/Divider"
 import Chip from "@mui/material/Chip"
 
-export const GoogleDocPublic = ({ event }) => {
-  const { title, contentUrl, author, tags, description, createdAt } = event
+export const EventDetailTile = ({ event }) => {
+  const { title, contentUrl, author, tags, description, createdAt, eventType, imageUrl } = event
 
   return (
     <Box
@@ -29,8 +29,8 @@ export const GoogleDocPublic = ({ event }) => {
             <CardMedia
               component="img"
               height="140"
-              image="/images/google_doc_background.png"
-              alt="google document"
+              image={eventType === "link" ? "/images/link_background.png" : "" || eventType === "pdf" ? "/images/pdf_background.png" : "" || eventType === "google_doc" ? "/images/google_doc_background.png" : "" || eventType === "youtube" ? "/images/youtube_background.png" : ""}
+              alt="Link"
             />
             <CardContent>
               <Button
@@ -42,7 +42,7 @@ export const GoogleDocPublic = ({ event }) => {
                 }}
                 fullWidth={true}
                 size="small"
-                href={contentUrl}
+                href={eventType === "pdf" ? imageUrl : contentUrl}
                 target="_blank"
               >
                 <Typography
@@ -110,7 +110,12 @@ export const GoogleDocPublic = ({ event }) => {
           </Card>
         </Grid2>
         <Grid2 xs={12} md={4} lg={4} xl={4}>
-          <Typography>Recommended for you</Typography>
+          <Typography
+            component="h3"
+            variant="h5"
+          >
+            Recommended for you
+          </Typography>
           <Box
             sx={{
               backgroundColor: "#fff",
