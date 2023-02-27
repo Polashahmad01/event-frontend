@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
         element: <CreateNewEventPage />
       },
       {
-        path: "event/:eventId",
+        path: "event/private/:eventId",
         element: <EventDetailPage />
       },
       {
