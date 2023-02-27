@@ -56,7 +56,10 @@ export const EventMenu = ({ event }) => {
             Delete
           </Typography>
         </MenuItem>
-        <MenuItem onClick={publishHandler}>
+        <MenuItem 
+          onClick={publishHandler}
+          disabled={event.isPublished}
+        >
           <Typography
             component="p"
             variant="body2" 
@@ -65,7 +68,10 @@ export const EventMenu = ({ event }) => {
             Publish
           </Typography>
         </MenuItem>
-        <MenuItem onClick={unPublishHandler}>
+        <MenuItem 
+          onClick={unPublishHandler}
+          disabled={event.isUnPublished}
+        >
           <Typography
             component="p"
             variant="body2" 
