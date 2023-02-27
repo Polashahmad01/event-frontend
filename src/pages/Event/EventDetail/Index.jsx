@@ -1,11 +1,14 @@
 import { Box } from "@mui/system"
-import { Typography } from "@mui/material"
+
+import { useEventDetail } from "./hooks/useEventDetail"
+import { EventDetailTile } from "./components/EventDetailTile"
 
 export const EventDetailPage = () => {
+  const { event } = useEventDetail()
 
   return (
     <Box>
-      <Typography textAlign="center">This is event detail page</Typography>
+      <EventDetailTile event={event} />
     </Box>
   )
 }
