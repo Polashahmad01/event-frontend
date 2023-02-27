@@ -14,7 +14,7 @@ import Chip from "@mui/material/Chip"
 import { EventDetailList } from "./EventDetailList"
 
 export const EventDetailTile = ({ event, recommendedEvents }) => {
-  const { eventType, contentUrl, author, createdAt, title, tags, description } = event
+  const { eventType, contentUrl, author, createdAt, title, tags, imageUrl, description } = event
 
   return (
     <Box

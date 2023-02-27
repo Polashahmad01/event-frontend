@@ -12,9 +12,10 @@ import format from "date-fns/format"
 import Chip from "@mui/material/Chip"
 
 import { usePrivateRecommendedEventDetail } from "./hooks/usePrivateRecommendedEventDetail"
+import { PrivateRecommendedEventList } from "./PrivateRecommendedEventList"
 
 export const PrivateRecommendedEventDetail = () => {
-  const { eventDetail } = usePrivateRecommendedEventDetail()
+  const { eventDetail, recommendedEvents } = usePrivateRecommendedEventDetail()
   const { eventType, contentUrl, author, createdAt, title, tags, description, imageUrl } = eventDetail
 
   return (
@@ -119,6 +120,7 @@ export const PrivateRecommendedEventDetail = () => {
         >
           Recommended for you
         </Typography>}
+        { title && <PrivateRecommendedEventList recommendedEvents={recommendedEvents} />}
       </Grid2>
     </Grid2>
   </Box>
