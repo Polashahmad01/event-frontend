@@ -11,9 +11,9 @@ import Stack from "@mui/system/Stack"
 import Divider from "@mui/material/Divider"
 import Chip from "@mui/material/Chip"
 
-import { RecommendedEventList } from "./RecommendedEvent/RecommendedEventList"
+import { RecommendedEventDetailList } from "./RecommendedEventDetailList"
 
-export const EventDetailTile = ({ event, recommendedEvents }) => {
+export const RecommendedEventDetailEventTile = ({ event, recommendedEvents }) => {
   const { title, contentUrl, author, tags, description, createdAt, eventType, imageUrl } = event
 
   return (
@@ -28,14 +28,14 @@ export const EventDetailTile = ({ event, recommendedEvents }) => {
               borderRadius: "5px"
             }}
           >
-            <CardMedia
+            {eventType && <CardMedia
               component="img"
               height="140"
               image={eventType === "link" ? "/images/link_background.png" : "" || eventType === "pdf" ? "/images/pdf_background.png" : "" || eventType === "google_doc" ? "/images/google_doc_background.png" : "" || eventType === "youtube" ? "/images/youtube_background.png" : ""}
               alt="Link"
-            />
+            />}
             <CardContent>
-              <Button
+              {eventType && <Button
                 endIcon={<LaunchIcon />}
                 sx={{
                   textTransform: "initial",
@@ -54,17 +54,17 @@ export const EventDetailTile = ({ event, recommendedEvents }) => {
                 >
                   Go To The External Link Of This Content
                 </Typography>
-              </Button>
+              </Button>}
               <Stack direction="column">
-                <Typography
+                {author && <Typography
                   component="p" 
                   variant="body2" 
                   fontWeight={400}
                   alignSelf="flex-end"
                 >
                   {author}
-                </Typography>
-                <Typography
+                </Typography>}
+                {createdAt && <Typography
                   component="p" 
                   variant="caption" 
                   color="rgb(140, 140, 140)" 
@@ -72,21 +72,21 @@ export const EventDetailTile = ({ event, recommendedEvents }) => {
                   alignSelf="flex-end"
                 >
                   {format(new Date(createdAt), 'MMM dd, yyyy')}
-                </Typography>
+                </Typography>}
               </Stack>
-              <Divider 
+              {createdAt && <Divider 
                 sx={{
                   margin: "1rem 0"
                 }}
-              />
-              <Typography
+              />}
+              {title && <Typography
                 component="h1"
                 variant="h6"
                 marginBottom="1rem"
               >
                 {title}
-              </Typography>
-              {tags.map(tag => (
+              </Typography>}
+              {tags && tags?.map(tag => (
                 <Chip
                   key={tag.tagName}
                   variant="outlined"
@@ -101,13 +101,13 @@ export const EventDetailTile = ({ event, recommendedEvents }) => {
                   }}
                 />
               ))}
-              <Typography
+              {description && <Typography
                 component="p"
                 variant="body2"
                 marginBottom="1.5rem"
               >
                 {description}
-              </Typography>
+              </Typography>}
             </CardContent>
           </Card>
         </Grid2>
@@ -118,7 +118,7 @@ export const EventDetailTile = ({ event, recommendedEvents }) => {
           >
             Recommended for you
           </Typography>
-          <RecommendedEventList
+          <RecommendedEventDetailList
             recommendedEvents={recommendedEvents}
           />
         </Grid2>
