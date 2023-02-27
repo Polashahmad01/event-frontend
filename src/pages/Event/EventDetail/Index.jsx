@@ -4,11 +4,11 @@ import { useEventDetail } from "./hooks/useEventDetail"
 import { EventDetailTile } from "./components/EventDetailTile"
 
 export const EventDetailPage = () => {
-  const { event } = useEventDetail()
+  const { event, recommendedEvents } = useEventDetail()
 
   return (
     <Box>
-      <EventDetailTile event={event} />
+      <EventDetailTile event={event} recommendedEvents={recommendedEvents} />
     </Box>
   )
 }

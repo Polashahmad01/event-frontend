@@ -5,6 +5,7 @@ import { EventHttpClient } from "../../../../lib/http/EventHttpClient"
 
 export const useEventDetail = () => {
   const [event, setEvent] = useState({})
+  const [recommendedEvents, setRecommendedEvents] = useState([])
   const eventHttpClient = useMemo(() => new EventHttpClient())
   const params = useParams()
 
@@ -12,11 +13,13 @@ export const useEventDetail = () => {
     const fetchEvent = async () => {
       const response = await eventHttpClient.fetchSingleEvent(params.eventId)
       setEvent(response.data)
+      setRecommendedEvents(response.recommendedEvent)
     }
     fetchEvent()
   },[])
 
   return {
-    event
+    event,
+    recommendedEvents
   }
 }
