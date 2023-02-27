@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
         element: <EventDetailPage />
       },
       {
+        path: "event/private/:eventId/recommended/:recommendedId",
+        element: <p>recommendedId Details</p>
+      },
+      {
         path: "event/public/:eventId",
         element: <EventDetailPublic />
       },

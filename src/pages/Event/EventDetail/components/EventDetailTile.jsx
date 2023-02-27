@@ -11,7 +11,9 @@ import Divider from "@mui/material/Divider"
 import format from "date-fns/format"
 import Chip from "@mui/material/Chip"
 
-export const EventDetailTile = ({ event }) => {
+import { EventDetailList } from "./EventDetailList"
+
+export const EventDetailTile = ({ event, recommendedEvents }) => {
   const { eventType, contentUrl, author, createdAt, title, tags, description } = event
 
   return (
@@ -116,6 +118,7 @@ export const EventDetailTile = ({ event }) => {
           >
             Recommended for you
           </Typography>}
+          {title && <EventDetailList recommendedEvents={recommendedEvents} />}
         </Grid2>
       </Grid2>
     </Box>
