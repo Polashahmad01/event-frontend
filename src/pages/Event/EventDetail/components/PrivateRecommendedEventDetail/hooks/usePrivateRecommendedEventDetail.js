@@ -13,7 +13,8 @@ export const usePrivateRecommendedEventDetail = () => {
     const fetchEventDetail = async () => {
       const response = await eventHttpClient.fetchSingleEvent(params.recommendedId)
       setEventDetail(response.data)
-      setRecommendedEvents(response.recommendedEvent)
+      const filteredRecommendedEvents = response.recommendedEvent.filter(item => item._id !== response.data._id)
+      setRecommendedEvents(filteredRecommendedEvents)
     }
     fetchEventDetail()
   },[])
