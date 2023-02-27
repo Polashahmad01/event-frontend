@@ -21,6 +21,10 @@ export const CreateNewEventForm = () => {
     tags,
     isShowFileUpload,
     progress,
+    isPublishEnable,
+    isUnPublishEnable,
+    publishEventButtonHandler,
+    unPublishEventButtonHandler,
     eventFormHandler,
     showFileUploadHandler,
     setUploadFile,
@@ -222,7 +226,8 @@ export const CreateNewEventForm = () => {
                       variant="contained"
                       type="button"
                       disableRipple={true}
-                      disabled={true}
+                      onClick={publishEventButtonHandler}
+                      disabled={!isPublishEnable}
                       sx={{
                         cursor: "pointer",
                         padding: "0.3rem 1rem",
@@ -246,7 +251,8 @@ export const CreateNewEventForm = () => {
                       variant="contained"
                       type="button"
                       disableRipple={true}
-                      disabled={true}
+                      disabled={!isUnPublishEnable}
+                      onClick={unPublishEventButtonHandler}
                       sx={{
                         cursor: "pointer",
                         padding: "0.3rem 1rem",

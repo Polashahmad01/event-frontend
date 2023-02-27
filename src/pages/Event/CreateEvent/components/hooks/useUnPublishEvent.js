@@ -25,7 +25,6 @@ export const useUnPublishEvent = () => {
     } else {
       notifySuccess(defaultUnPublishSuccessMessage)
     }
-    console.log(response)
   }
 
   return {
