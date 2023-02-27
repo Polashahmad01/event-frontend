@@ -6,6 +6,8 @@ import { storage } from "../../../../../lib/firebase"
 import { YOUTUBE_URL_REGEXP as youtubeUrl } from "../../../../../lib/constants"
 import { EventHttpClient } from "../../../../../lib/http/EventHttpClient"
 import { useNotification } from "../../../../../hooks/useNotification"
+import { usePublishEvent } from "./usePublishEvent"
+import { useUnPublishEvent } from "./useUnPublishEvent"
 
 const INITIAL_FORM_STATE = {
   title: "",
@@ -70,7 +72,12 @@ export const useCreateNewEventForm = () => {
   const [hasValidFileType, setHasValidFileType] = useState(false)
   const [fileUrl, setFileUrl] = useState("")
   const [progress, setProgress] = useState(0)
+  const [isPublishEnable, setIsPublishEnable] = useState(false)
+  const [isUnPublishEnable, setIsUnPublishEnable] = useState(false)
+  const [eventId, setEventId] = useState(null)
   const { notifySuccess, notifyError } = useNotification()
+  const { publishEventHandler } = usePublishEvent()
+  const { unPublishEventHandler } = useUnPublishEvent()
   const eventHttpClient = useMemo(() => new EventHttpClient())
 
   const showFileUploadHandler = (event) => {
@@ -99,7 +106,12 @@ export const useCreateNewEventForm = () => {
     }
 
     const response = await eventHttpClient.createNewEvent(newEventFormData)
-    const { data: { acknowledged }} = response
+    const { data: { acknowledged, insertedId }} = response
+
+    if(insertedId) {
+      setEventId(insertedId)
+      setIsPublishEnable(true)
+    }
 
     if(acknowledged === false) {
       notifyError(defaultErrorMessage)
@@ -143,6 +155,18 @@ export const useCreateNewEventForm = () => {
     }
   },[hasValidFileType])
 
+  const publishEventButtonHandler = () => {
+    publishEventHandler(eventId)
+    setIsPublishEnable(false)
+    setIsUnPublishEnable(true)
+  }
+
+  const unPublishEventButtonHandler = () => {
+    unPublishEventHandler(eventId)
+    setIsPublishEnable(true)
+    setIsUnPublishEnable(false)
+  }
+
   return {
     initialFormState: INITIAL_FORM_STATE,
     formValidation: FORM_VALIDATION,
@@ -150,6 +174,10 @@ export const useCreateNewEventForm = () => {
     tags,
     isShowFileUpload,
     progress,
+    isPublishEnable,
+    isUnPublishEnable,
+    publishEventButtonHandler,
+    unPublishEventButtonHandler,
     eventFormHandler,
     showFileUploadHandler,
     setUploadFile,
