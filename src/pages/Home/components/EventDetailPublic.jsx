@@ -5,12 +5,12 @@ import { useEventDetailPublic } from "./hooks/useEventDetailPublic"
 import { EventDetailTile } from "./EventDetailTile"
 export const EventDetailPublic = () => {
   const { eventId } = useParams()
-  const { event } = useEventDetailPublic(eventId)
+  const { event, recommendedEvents } = useEventDetailPublic(eventId)
   const { eventType } = event
 
   return (
     <Box>
-      {eventType && <EventDetailTile event={event} />}
+      {eventType && <EventDetailTile event={event} recommendedEvents={recommendedEvents} />}
     </Box>
   )
 }
