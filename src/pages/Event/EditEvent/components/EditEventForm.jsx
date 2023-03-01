@@ -7,74 +7,31 @@ import Button from "@mui/material/Button"
 import Divider from "@mui/material/Divider"
 import { Link } from "react-router-dom"
 
-import * as Yup from "yup"
-
-import { YOUTUBE_URL_REGEXP as youtubeUrl } from "../../../../lib/constants"
-
+import { useEditEventForm } from "./hooks/useEditEventForm"
 import { TextFieldWrapper } from "../../../../components/form/TextField"
 import { SelectField } from "../../../../components/form/SelectField"
 import { TagsField } from "../../../../components/form/TagsField"
-
-const CONTENT_TYPES = [
-  { 
-    id: "1", 
-    label: "google_doc", 
-    value: "Google Doc" 
-  },
-  { 
-    id: "2", 
-    label: "link", 
-    value: "Link" 
-  },
-  { 
-    id: "3", 
-    label: "pdf", 
-    value: "PDF" 
-  }, 
-  { 
-    id: "4", 
-    label: "youtube", 
-    value: "YouTube"
-  }
-]
+import { FileUpload } from "../../../../components/form/FileUpload"
 
 export const EditEventForm = (props) => {
-  const { title, author, eventType, tags, contentUrl, summary, description } = props.event
-  console.log(props)
-
-  const initialFormState = {
-    title: title,
-    author: author,
-    eventType: eventType,
-    tags: tags,
-    contentUrl: contentUrl,
-    summary: summary,
-    description: description
-  }
-
-  const formValidation = Yup.object().shape({
-    title: Yup.string()
-      .min(5)
-      .required("title is required"),
-    author: Yup.string()
-      .required("author is required"),
-    eventType: Yup.string()
-      .required('content type is required'),
-    // tags: Yup.string()
-    //   .required("tag is required"),
-    contentUrl: Yup.string()
-      .matches(youtubeUrl, "invalid content url")
-      .required('content url is required'),
-    summary: Yup.string()
-      .required("summary is required"),
-    description: Yup.string()
-      .min(10)
-      .required("description is required")
-  })
-
-  const editEventFormSubmitHandler = (values, actions) => {
-    console.log('values', values)
-  }
+  const { 
+    initialFormState,
+    formValidation,
+    contentTypes,
+    title,
+    author,
+    eventType,
+    tags,
+    contentUrl,
+    summary,
+    description,
+    isShowFileUpload,
+    progress,
+    setUploadFile,
+    setHasValidFileType,
+    editEventFormSubmitHandler,
+    showFileUploadHandler
+        } = useEditEventForm(props)
 
   return (
     <Box
@@ -137,7 +94,8 @@ export const EditEventForm = (props) => {
                   <SelectField
                     name="eventType"
                     label="Event Type"
-                    options={CONTENT_TYPES}
+                    options={contentTypes}
+                    onClick={showFileUploadHandler}
                   />
                 </Grid2>
 
@@ -201,7 +159,13 @@ export const EditEventForm = (props) => {
                 />
               </Grid2>
 
-              {/* File Upload */}
+              <Grid2 xs={12}>
+                {isShowFileUpload && <FileUpload 
+                  setUploadFile={setUploadFile}
+                  progress={progress}
+                  setHasValidFileType={setHasValidFileType}
+                />}
+              </Grid2>
 
               <Grid2 container rowSpacing={3}>
                 <Grid2 xs={12} sm={4} md={4} lg={4} pr={3}></Grid2>
