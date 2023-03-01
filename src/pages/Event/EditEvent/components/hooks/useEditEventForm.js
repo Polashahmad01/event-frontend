@@ -7,8 +7,8 @@ import { YOUTUBE_URL_REGEXP as youtubeUrl } from "../../../../../lib/constants"
 import { EventHttpClient } from "../../../../../lib/http/EventHttpClient"
 import { useNotification } from "../../../../../hooks/useNotification"
 
-const defaultEditErrorMessage = "Event has been successfully edited"
-const defaultEditSuccessMessage = "Unable to edit the event. Please try again later"
+const defaultEditErrorMessage = "Unable to edit the event. Please try again later"
+const defaultEditSuccessMessage = "Event has been successfully edited"
 
 export const useEditEventForm = ({ event }) => {
   const INITIAL_FORM_STATE = {
@@ -98,12 +98,12 @@ export const useEditEventForm = ({ event }) => {
       createdAt: new Date()
     }
 
-    const response = await eventHttpClient.createNewEvent(editedEventFormData)
+    const response = await eventHttpClient.editEvent(_id, editedEventFormData)
     const { data: { acknowledged, insertedId }} = response
 
     if(insertedId) {
       setEventId(insertedId)
-    // Enable Publish
+      // Enable publish
     }
 
     if(acknowledged === false) {
@@ -138,7 +138,6 @@ export const useEditEventForm = ({ event }) => {
       uploadFileHandler(uploadFile)
     }
   },[hasValidFileType])
-
 
   return {
     initialFormState: INITIAL_FORM_STATE,
