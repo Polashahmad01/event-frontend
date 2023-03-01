@@ -1,11 +1,14 @@
 import { Box } from "@mui/system"
-import { Typography } from "@mui/material"
+
+import { useEditEvent } from "./hooks/useEditEvent"
+import { EditEventForm } from "./components/EditEventForm"
 
 export const EditEventPage = () => {
+  const { event } = useEditEvent()
 
   return (
     <Box>
-      <Typography textAlign="center">This is edit event page</Typography>
+      {Object.keys(event).length !== 0 && <EditEventForm event={event} /> }
     </Box>
   )
 }
