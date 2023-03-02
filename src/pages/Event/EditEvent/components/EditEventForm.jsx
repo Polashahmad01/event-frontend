@@ -223,65 +223,6 @@ export const EditEventForm = (props) => {
                 </Grid2>
               </Grid2>
 
-
-              <Divider sx={{ marginY: "2rem"}} />
-
-            </Grid2>
-
-
-            <Grid2 xs={12} sm={12} md={12} lg={12}>
-              <Stack direction="row" justifyContent="space-between">
-                <Stack spacing={2} direction="row" justifyContent="flex-end" alignItems="center">
-                  <Button
-                    variant="contained"
-                    type="button"
-                    disableRipple={true}
-                    disabled={true}
-                    sx={{
-                      cursor: "pointer",
-                      padding: "0.3rem 1rem",
-                      borderRadius: "4px",
-                      border: "none",
-                      fontWeight: "500",
-                      fontSize: "0.8rem",
-                      textTransform: "revert",
-                      backgroundColor: "black",
-                      color: "white",
-                      transition: "all 0.3s ease-in",
-                      '&:hover': {
-                        backgroundColor: "#F79B67",
-                        color: "white"
-                      }
-                    }}
-                  >
-                    Publish
-                  </Button>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    disableRipple={true}
-                    disabled={true}
-                    sx={{
-                      cursor: "pointer",
-                      padding: "0.3rem 1rem",
-                      borderRadius: "4px",
-                      border: "none",
-                      fontWeight: "500",
-                      fontSize: "0.8rem",
-                      textTransform: "revert",
-                      backgroundColor: "black",
-                      color: "white",
-                      transition: "all 0.3s ease-in",
-                      '&:hover': {
-                        backgroundColor: "#F79B67",
-                        color: "white"
-                      }
-                    }}
-                  >
-                    Unpublish
-                  </Button>
-                </Stack>
-              </Stack>
             </Grid2>
 
           </Grid2>
