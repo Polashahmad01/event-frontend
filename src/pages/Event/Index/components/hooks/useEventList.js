@@ -4,12 +4,20 @@ import { EventHttpClient } from "../../../../../lib/http/EventHttpClient"
 
 export const useEventList = () => {
   const [eventLists, setEventLists] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const eventHttpClient = useMemo(() => new EventHttpClient())
 
   const fetchAllEvents = async () => {
-    const response = await eventHttpClient.fetchAllEvents()
-    const { data } = response
-    setEventLists(data)
+    try {
+      setIsLoading(true)
+      const response = await eventHttpClient.fetchAllEvents()
+      const { data } = response
+      setEventLists(data)
+      
+    } catch (error) {
+      
+    }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -17,6 +25,7 @@ export const useEventList = () => {
   },[])
 
   return {
+    isLoading,
     eventLists
   }
 }
