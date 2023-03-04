@@ -27,7 +27,7 @@ export const EventItem = ({ event }) => {
       onMouseEnter={onMouseEnterHandler}
       onMouseLeave={onMouseLeaveHandler}
       sx={{
-        margin: "2rem 0",
+        marginBottom: "2rem",
         border: "3px solid #efefef",
         borderRadius: "7px",
         cursor: "pointer",
