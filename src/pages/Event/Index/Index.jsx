@@ -2,10 +2,12 @@ import { Box } from "@mui/system"
 import Grid2 from "@mui/material/Unstable_Grid2"
 import Typography from "@mui/material/Typography"
 
+import { useEventList } from "./components/hooks/useEventList"
 import { EventAndTagBanner } from "./components/EventAndTagBanner"
 import { EventList } from "./components/EventList"
 
 export const EventListingPage = () => {
+  const { isLoading, eventLists } = useEventList()
 
   return (
     <Box>
@@ -45,7 +47,7 @@ export const EventListingPage = () => {
           </Typography>
         </Grid2>
         <Grid2 xs={12} md={9}>
-          <EventList />
+          {!isLoading && <EventList eventLists={eventLists} />}
         </Grid2>
       </Grid2>
     </Box>
