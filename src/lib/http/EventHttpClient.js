@@ -19,5 +19,5 @@ export class EventHttpClient {
   
   getAllTags = async () => await this.client.get("api/v1/tags")
 
-  searchAll = async () => await this.client.get("api/v1/event/search")
+  searchAll = async (filterData) => await this.client.post("api/v1/event/search", filterData)
 }
