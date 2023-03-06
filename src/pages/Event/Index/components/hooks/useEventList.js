@@ -10,12 +10,11 @@ export const useEventList = () => {
   const fetchAllEvents = async () => {
     try {
       setIsLoading(true)
-      const response = await eventHttpClient.fetchAllEvents()
-      const { data } = response
-      setEventLists(data)
-      
+      const response = await eventHttpClient.searchAll()
+      const { events } = response
+      setEventLists(events)
     } catch (error) {
-      
+      console.log(error)
     }
     setIsLoading(false)
   }

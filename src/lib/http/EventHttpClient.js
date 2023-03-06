@@ -18,4 +18,6 @@ export class EventHttpClient {
   editEvent = async (eventId, formData) => await this.client.put(`api/v1/event/${eventId}`, formData)
   
   getAllTags = async () => await this.client.get("api/v1/tags")
+
+  searchAll = async () => await this.client.get("api/v1/event/search")
 }
