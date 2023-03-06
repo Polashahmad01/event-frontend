@@ -5,7 +5,7 @@ import Button from "@mui/material/Button"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
 
-export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelected, setIsGoogleDocSelected, setIsLinkSelected, setIsPdfSelected, setFilter }) => {
+export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelected, isYouTubeVideoSelected, setIsGoogleDocSelected, setIsLinkSelected, setIsPdfSelected, setIsYouTubeVideoSelected, setFilter }) => {
 
   const googleDocChangeHandler = event => {
     setIsGoogleDocSelected(!isGoogleDocSelected)
@@ -50,6 +50,22 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
     }
 
     if(isPdfSelected === true) {
+      setFilter({})
+    }
+  }
+
+  const youTubeVideoChangeHandler = event => {
+    setIsYouTubeVideoSelected(!isYouTubeVideoSelected)
+
+    if(isYouTubeVideoSelected === false) {
+      setFilter({
+        eventTypes: [
+          "youtube"
+        ]
+      })
+    }
+
+    if(isYouTubeVideoSelected === true) {
       setFilter({})
     }
   }
@@ -125,6 +141,24 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
               size="small"
               checked={isPdfSelected}
               onChange={pdfChangeHandler}
+            />
+          }
+          sx={{
+            ".MuiFormControlLabel-label": {
+              marginLeft: "0.5rem",
+              fontWeight: "300",
+              fontSize: "0.9rem"
+            }
+          }}
+        />
+
+        <FormControlLabel
+          label="YouTube Video"
+          control={
+            <Checkbox
+              size="small"
+              checked={isYouTubeVideoSelected}
+              onChange={youTubeVideoChangeHandler}
             />
           }
           sx={{
