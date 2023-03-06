@@ -5,7 +5,7 @@ import Button from "@mui/material/Button"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
 
-export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, setIsGoogleDocSelected, setIsLinkSelected, setFilter }) => {
+export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelected, setIsGoogleDocSelected, setIsLinkSelected, setIsPdfSelected, setFilter }) => {
 
   const googleDocChangeHandler = event => {
     setIsGoogleDocSelected(!isGoogleDocSelected)
@@ -34,6 +34,22 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, setIsGoogleD
     }
 
     if(isLinkSelected === true) {
+      setFilter({})
+    }
+  }
+
+  const pdfChangeHandler = event => {
+    setIsPdfSelected(!isPdfSelected)
+
+    if(isPdfSelected === false) {
+      setFilter({
+        eventTypes: [
+          "pdf"
+        ]
+      })
+    }
+
+    if(isPdfSelected === true) {
       setFilter({})
     }
   }
@@ -91,6 +107,24 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, setIsGoogleD
               size="small"
               checked={isLinkSelected}
               onChange={linkChangeHandler}
+            />
+          }
+          sx={{
+            ".MuiFormControlLabel-label": {
+              marginLeft: "0.5rem",
+              fontWeight: "300",
+              fontSize: "0.9rem"
+            }
+          }}
+        />
+
+        <FormControlLabel
+          label="PDF"
+          control={
+            <Checkbox
+              size="small"
+              checked={isPdfSelected}
+              onChange={pdfChangeHandler}
             />
           }
           sx={{

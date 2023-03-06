@@ -12,6 +12,7 @@ export const useEventList = () => {
 
   const [isGoogleDocSelected, setIsGoogleDocSelected] = useState(false)
   const [isLinkSelected, setIsLinkSelected] = useState(false)
+  const [isPdfSelected, setIsPdfSelected] = useState(false)
 
   const fetchAllEvents = async () => {
     try {
@@ -35,8 +36,10 @@ export const useEventList = () => {
     isLoading,
     isGoogleDocSelected,
     isLinkSelected,
+    isPdfSelected,
     setIsGoogleDocSelected,
     setIsLinkSelected,
+    setIsPdfSelected,
     eventLists,
     setFilter
   }

@@ -12,8 +12,10 @@ export const EventListingPage = () => {
     isLoading, 
     isGoogleDocSelected,
     isLinkSelected,
+    isPdfSelected,
     setIsGoogleDocSelected,
     setIsLinkSelected,
+    setIsPdfSelected,
     eventLists,
     setFilter
         } = useEventList()
@@ -29,6 +31,8 @@ export const EventListingPage = () => {
             setIsGoogleDocSelected={setIsGoogleDocSelected}
             isLinkSelected={isLinkSelected}
             setIsLinkSelected={setIsLinkSelected}
+            isPdfSelected={isPdfSelected}
+            setIsPdfSelected={setIsPdfSelected}
           />
         </Grid2>
         <Grid2 xs={12} md={9}>
