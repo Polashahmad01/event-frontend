@@ -70,6 +70,14 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
     }
   }
 
+  const resetTypeFilter = () => {
+    setFilter({})
+    setIsGoogleDocSelected(false)
+    setIsLinkSelected(false)
+    setIsPdfSelected(false)
+    setIsYouTubeVideoSelected(false)
+  }
+
   return (
     <>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -85,6 +93,7 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
         <Box>
           <Button
             size="medium"
+            onClick={resetTypeFilter}
             sx={{
             textTransform: "initial",
             fontWeight: 300,
