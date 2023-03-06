@@ -11,6 +11,7 @@ export const useEventList = () => {
   const [filter, setFilter] = useState(INITIAL_FILTER_DATA)
 
   const [isGoogleDocSelected, setIsGoogleDocSelected] = useState(false)
+  const [isLinkSelected, setIsLinkSelected] = useState(false)
 
   const fetchAllEvents = async () => {
     try {
@@ -33,7 +34,9 @@ export const useEventList = () => {
   return {
     isLoading,
     isGoogleDocSelected,
+    isLinkSelected,
     setIsGoogleDocSelected,
+    setIsLinkSelected,
     eventLists,
     setFilter
   }

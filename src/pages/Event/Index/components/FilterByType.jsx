@@ -5,7 +5,7 @@ import Button from "@mui/material/Button"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
 
-export const FilterByType = ({ isGoogleDocSelected, setIsGoogleDocSelected,  setFilter }) => {
+export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, setIsGoogleDocSelected, setIsLinkSelected, setFilter }) => {
 
   const googleDocChangeHandler = event => {
     setIsGoogleDocSelected(!isGoogleDocSelected)
@@ -18,6 +18,22 @@ export const FilterByType = ({ isGoogleDocSelected, setIsGoogleDocSelected,  set
     }
 
     if(isGoogleDocSelected === true) {
+      setFilter({})
+    }
+  }
+
+  const linkChangeHandler = event => {
+    setIsLinkSelected(!isLinkSelected)
+
+    if(isLinkSelected === false) {
+      setFilter({
+        eventTypes: [
+          "link"
+        ]
+      })
+    }
+
+    if(isLinkSelected === true) {
       setFilter({})
     }
   }
@@ -57,6 +73,24 @@ export const FilterByType = ({ isGoogleDocSelected, setIsGoogleDocSelected,  set
               size="small"
               checked={isGoogleDocSelected}
               onChange={googleDocChangeHandler}
+            />
+          }
+          sx={{
+            ".MuiFormControlLabel-label": {
+              marginLeft: "0.5rem",
+              fontWeight: "300",
+              fontSize: "0.9rem"
+            }
+          }}
+        />
+
+        <FormControlLabel
+          label="Link"
+          control={
+            <Checkbox
+              size="small"
+              checked={isLinkSelected}
+              onChange={linkChangeHandler}
             />
           }
           sx={{
