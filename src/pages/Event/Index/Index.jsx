@@ -6,6 +6,7 @@ import { useEventList } from "./components/hooks/useEventList"
 import { EventAndTagBanner } from "./components/EventAndTagBanner"
 import { EventList } from "./components/EventList"
 import { FilterByType } from "./components/FilterByType"
+import { FilterByStatus } from "./components/FilterByStatus"
 
 export const EventListingPage = () => {
   const { 
@@ -15,11 +16,18 @@ export const EventListingPage = () => {
     isLinkSelected,
     isPdfSelected,
     isYouTubeVideoSelected,
+    isDraftSelected,
+    isPublishSelected,
+    isUnpublishSelected,
     onGoogleDocChangeHandler,
     onLinkChangeHandler,
     onPdfChangeHandler,
     onYouTubeVideoChangeHandler,
-    onResetTypeFilterHanlder
+    onResetTypeFilterHanlder,
+    onDraftEventHandler,
+    onPublishEventHandler,
+    onUnPublishEventHandler,
+    onResetStatusFilterHandler
         } = useEventList()
 
   return (
@@ -48,12 +56,15 @@ export const EventListingPage = () => {
           </Typography>
         </Grid2>
         <Grid2 xs={12} md={3}>
-          <Typography
-            backgroundColor="black"
-            color="white"
-          >
-            Filter by Status
-          </Typography>
+          <FilterByStatus
+            isDraftSelected={isDraftSelected}
+            onDraftEventHandler={onDraftEventHandler}
+            isPublishSelected={isPublishSelected}
+            onPublishEventHandler={onPublishEventHandler}
+            isUnpublishSelected={isUnpublishSelected}
+            onUnPublishEventHandler={onUnPublishEventHandler}
+            onResetStatusFilterHandler={onResetStatusFilterHandler}
+          />
         </Grid2>
         <Grid2 xs={12} md={9}></Grid2>
         <Grid2 xs={12} md={3}>
