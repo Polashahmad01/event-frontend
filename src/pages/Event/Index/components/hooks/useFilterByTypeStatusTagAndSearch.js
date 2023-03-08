@@ -115,7 +115,7 @@ const eventReducer = (state, action) => {
     }
   }
 
-  if(action.type === "REMOVE_DRAFT_EVENTS") {
+  if(action.type === "REMOVE_PUBLISH_EVENTS") {
     return {
       ...state,
       isPublishSelected: false,
