@@ -5,78 +5,7 @@ import Button from "@mui/material/Button"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
 
-export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelected, isYouTubeVideoSelected, setIsGoogleDocSelected, setIsLinkSelected, setIsPdfSelected, setIsYouTubeVideoSelected, setFilter }) => {
-
-  const googleDocChangeHandler = event => {
-    setIsGoogleDocSelected(!isGoogleDocSelected)
-    if(isGoogleDocSelected === false) {
-      setFilter({
-        eventTypes: [
-          "google_doc"
-        ]
-      })
-    }
-
-    if(isGoogleDocSelected === true) {
-      setFilter({})
-    }
-  }
-
-  const linkChangeHandler = event => {
-    setIsLinkSelected(!isLinkSelected)
-
-    if(isLinkSelected === false) {
-      setFilter({
-        eventTypes: [
-          "link"
-        ]
-      })
-    }
-
-    if(isLinkSelected === true) {
-      setFilter({})
-    }
-  }
-
-  const pdfChangeHandler = event => {
-    setIsPdfSelected(!isPdfSelected)
-
-    if(isPdfSelected === false) {
-      setFilter({
-        eventTypes: [
-          "pdf"
-        ]
-      })
-    }
-
-    if(isPdfSelected === true) {
-      setFilter({})
-    }
-  }
-
-  const youTubeVideoChangeHandler = event => {
-    setIsYouTubeVideoSelected(!isYouTubeVideoSelected)
-
-    if(isYouTubeVideoSelected === false) {
-      setFilter({
-        eventTypes: [
-          "youtube"
-        ]
-      })
-    }
-
-    if(isYouTubeVideoSelected === true) {
-      setFilter({})
-    }
-  }
-
-  const resetTypeFilter = () => {
-    setFilter({})
-    setIsGoogleDocSelected(false)
-    setIsLinkSelected(false)
-    setIsPdfSelected(false)
-    setIsYouTubeVideoSelected(false)
-  }
+export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelected, isYouTubeVideoSelected, onGoogleDocChangeHandler, onLinkChangeHandler, onPdfChangeHandler, onYouTubeVideoChangeHandler, onResetTypeFilterHanlder  }) => {
 
   return (
     <>
@@ -93,7 +22,7 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
         <Box>
           <Button
             size="medium"
-            onClick={resetTypeFilter}
+            onClick={onResetTypeFilterHanlder}
             sx={{
             textTransform: "initial",
             fontWeight: 300,
@@ -113,7 +42,7 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
             <Checkbox
               size="small"
               checked={isGoogleDocSelected}
-              onChange={googleDocChangeHandler}
+              onChange={onGoogleDocChangeHandler}
             />
           }
           sx={{
@@ -131,7 +60,7 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
             <Checkbox
               size="small"
               checked={isLinkSelected}
-              onChange={linkChangeHandler}
+              onChange={onLinkChangeHandler}
             />
           }
           sx={{
@@ -149,7 +78,7 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
             <Checkbox
               size="small"
               checked={isPdfSelected}
-              onChange={pdfChangeHandler}
+              onChange={onPdfChangeHandler}
             />
           }
           sx={{
@@ -167,7 +96,7 @@ export const FilterByType = ({ isGoogleDocSelected, isLinkSelected, isPdfSelecte
             <Checkbox
               size="small"
               checked={isYouTubeVideoSelected}
-              onChange={youTubeVideoChangeHandler}
+              onChange={onYouTubeVideoChangeHandler}
             />
           }
           sx={{

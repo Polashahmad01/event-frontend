@@ -1,24 +1,29 @@
 import { useState, useMemo, useEffect } from "react"
 
+import { useFilterByTypeStatusAndSearch } from "./useFilterByTypeStatusTagAndSearch"
 import { EventHttpClient } from "../../../../../lib/http/EventHttpClient"
-
-const INITIAL_FILTER_DATA = {}
 
 export const useEventList = () => {
   const [eventLists, setEventLists] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const eventHttpClient = useMemo(() => new EventHttpClient())
-  const [filter, setFilter] = useState(INITIAL_FILTER_DATA)
-
-  const [isGoogleDocSelected, setIsGoogleDocSelected] = useState(false)
-  const [isLinkSelected, setIsLinkSelected] = useState(false)
-  const [isPdfSelected, setIsPdfSelected] = useState(false)
-  const [isYouTubeVideoSelected, setIsYouTubeVideoSelected] = useState(false)
+  const { 
+    eventState,
+    isGoogleDocSelected,
+    isLinkSelected,
+    isPdfSelected,
+    isYouTubeVideoSelected,
+    onGoogleDocChangeHandler,
+    onLinkChangeHandler,
+    onPdfChangeHandler,
+    onYouTubeVideoChangeHandler,
+    onResetTypeFilterHanlder
+        } = useFilterByTypeStatusAndSearch()
 
   const fetchAllEvents = async () => {
     try {
       setIsLoading(true)
-      const response = await eventHttpClient.searchAll(filter)
+      const response = await eventHttpClient.searchAll(eventState)
       const { events } = response
       setEventLists(events)
     } catch (error) {
@@ -29,21 +34,19 @@ export const useEventList = () => {
 
   useEffect(() => {
     fetchAllEvents()
-  },[filter])
-
-  console.log('filter', filter)
+  },[eventState])
 
   return {
     isLoading,
+    eventLists,
     isGoogleDocSelected,
     isLinkSelected,
     isPdfSelected,
     isYouTubeVideoSelected,
-    setIsGoogleDocSelected,
-    setIsLinkSelected,
-    setIsPdfSelected,
-    setIsYouTubeVideoSelected,
-    eventLists,
-    setFilter
+    onGoogleDocChangeHandler,
+    onLinkChangeHandler,
+    onPdfChangeHandler,
+    onYouTubeVideoChangeHandler,
+    onResetTypeFilterHanlder
   }
 }
