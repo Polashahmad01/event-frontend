@@ -13,11 +13,18 @@ export const useEventList = () => {
     isLinkSelected,
     isPdfSelected,
     isYouTubeVideoSelected,
+    isDraftSelected,
+    isPublishSelected,
+    isUnpublishSelected,
     onGoogleDocChangeHandler,
     onLinkChangeHandler,
     onPdfChangeHandler,
     onYouTubeVideoChangeHandler,
-    onResetTypeFilterHanlder
+    onResetTypeFilterHanlder,
+    onDraftEventHandler,
+    onPublishEventHandler,
+    onUnPublishEventHandler,
+    onResetStatusFilterHandler
         } = useFilterByTypeStatusAndSearch()
 
   const fetchAllEvents = async () => {
@@ -43,10 +50,17 @@ export const useEventList = () => {
     isLinkSelected,
     isPdfSelected,
     isYouTubeVideoSelected,
+    isDraftSelected,
+    isPublishSelected,
+    isUnpublishSelected,
     onGoogleDocChangeHandler,
     onLinkChangeHandler,
     onPdfChangeHandler,
     onYouTubeVideoChangeHandler,
-    onResetTypeFilterHanlder
+    onResetTypeFilterHanlder,
+    onDraftEventHandler,
+    onPublishEventHandler,
+    onUnPublishEventHandler,
+    onResetStatusFilterHandler
   }
 }

@@ -5,6 +5,9 @@ const INITIAL_FILTER_DATA = {
   isLinkSelected: false,
   isPdfSelected: false,
   isYouTubeVideoSelected: false,
+  isDraftSelected: false,
+  isPublishSelected: false,
+  isUnpublishSelected: false,
   eventTypes: [],
   statuses: [],
   tags: [],
@@ -88,6 +91,64 @@ const eventReducer = (state, action) => {
     }
   }
 
+  if(action.type === "GET_DRAFT_EVENTS") {
+    return {
+      ...state,
+      isDraftSelected: true,
+      statuses: state.statuses.concat(action.payload)
+    }
+  }
+
+  if(action.type === "REMOVE_DRAFT_EVENTS") {
+    return {
+      ...state,
+      isDraftSelected: false,
+      statuses: state.statuses.filter(event => event !== action.payload)
+    }
+  }
+
+  if(action.type === "GET_PUBLISH_EVENTS") {
+    return {
+      ...state,
+      isPublishSelected: true,
+      statuses: state.statuses.concat(action.payload)
+    }
+  }
+
+  if(action.type === "REMOVE_DRAFT_EVENTS") {
+    return {
+      ...state,
+      isPublishSelected: false,
+      statuses: state.statuses.filter(event => event !== action.payload)
+    }
+  }
+
+  if(action.type === "GET_UNPUBLISH_EVENTS") {
+    return {
+      ...state,
+      isUnpublishSelected: true,
+      statuses: state.statuses.concat(action.payload)
+    }
+  }
+
+  if(action.type === "REMOVE_UNPUBLISH_EVENTS") {
+    return {
+      ...state,
+      isUnpublishSelected: false,
+      statuses: state.statuses.filter(event => event !== action.payload)
+    }
+  }
+
+  if(action.type === "RESET_STATUS_FILTER") {
+    return {
+      ...state,
+      isDraftSelected: false,
+      isPublishSelected: false,
+      isUnpublishSelected: false,
+      statuses: []
+    }
+  }
+
   return INITIAL_FILTER_DATA
 }
 
@@ -130,16 +191,51 @@ export const useFilterByTypeStatusAndSearch = () => {
     eventDispatch({ type: "RESET_TYPE_FILTER" })
   }
 
+  const draftEventHandler = () => {
+    if(eventState.isDraftSelected === false) {
+      eventDispatch({ type: "GET_DRAFT_EVENTS", payload: "draft" })
+    } else {
+      eventDispatch({ type: "REMOVE_DRAFT_EVENTS", payload: "draft" })
+    }
+  }
+
+  const publishEventHandler = () => {
+    if(eventState.isPublishSelected === false) {
+      eventDispatch({ type: "GET_PUBLISH_EVENTS", payload: "published" })
+    } else {
+      eventDispatch({ type: "REMOVE_PUBLISH_EVENTS", payload: "published" })
+    }
+  }
+
+  const unPublishEventHandler = () => {
+    if(eventState.isUnpublishSelected === false) {
+      eventDispatch({ type: "GET_UNPUBLISH_EVENTS", payload: "unPublished" })
+    } else {
+      eventDispatch({ type: "REMOVE_UNPUBLISH_EVENTS", payload: "unPublished"})
+    }
+  }
+
+  const resetStatusFilterHandler = () => {
+    eventDispatch({ type: "RESET_STATUS_FILTER" })
+  }
+
   return {
     eventState,
     isGoogleDocSelected: eventState.isGoogleDocSelected,
     isLinkSelected: eventState.isLinkSelected,
     isPdfSelected: eventState.isPdfSelected,
     isYouTubeVideoSelected: eventState.isYouTubeVideoSelected,
+    isDraftSelected: eventState.isDraftSelected,
+    isPublishSelected: eventState.isPublishSelected,
+    isUnpublishSelected: eventState.isUnpublishSelected,
     onGoogleDocChangeHandler: googleDocChangeHandler,
     onLinkChangeHandler :linkChangeHandler,
     onPdfChangeHandler: pdfChangeHandler,
     onYouTubeVideoChangeHandler: youTubeVideoChangeHandler,
-    onResetTypeFilterHanlder: resetTypeFilterHanlder
+    onResetTypeFilterHanlder: resetTypeFilterHanlder,
+    onDraftEventHandler: draftEventHandler,
+    onPublishEventHandler: publishEventHandler,
+    onUnPublishEventHandler: unPublishEventHandler,
+    onResetStatusFilterHandler: resetStatusFilterHandler
   }
 }
