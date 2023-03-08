@@ -5,6 +5,7 @@ import { EventHttpClient } from "../../../../../lib/http/EventHttpClient"
 
 export const useEventList = () => {
   const [eventLists, setEventLists] = useState([])
+  const [tags, setTags] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const eventHttpClient = useMemo(() => new EventHttpClient())
   const { 
@@ -24,7 +25,9 @@ export const useEventList = () => {
     onDraftEventHandler,
     onPublishEventHandler,
     onUnPublishEventHandler,
-    onResetStatusFilterHandler
+    onResetStatusFilterHandler,
+    onFilterByTagHandler,
+    onResetTagFilterHandler
         } = useFilterByTypeStatusAndSearch()
 
   const fetchAllEvents = async () => {
@@ -39,13 +42,31 @@ export const useEventList = () => {
     setIsLoading(false)
   }
 
+  const fetchAllTags = async () => {
+    try {
+      setIsLoading(true)
+      const response = await eventHttpClient.getAllTags()
+      const { data } = response
+      setTags(data)
+
+    } catch (error) {
+      console.log(error)
+    }
+    setIsLoading(false)
+  }
+
   useEffect(() => {
     fetchAllEvents()
   },[eventState])
 
+  useEffect(() => {
+    fetchAllTags()
+  }, [])
+
   return {
     isLoading,
     eventLists,
+    tags,
     isGoogleDocSelected,
     isLinkSelected,
     isPdfSelected,
@@ -61,6 +82,8 @@ export const useEventList = () => {
     onDraftEventHandler,
     onPublishEventHandler,
     onUnPublishEventHandler,
-    onResetStatusFilterHandler
+    onResetStatusFilterHandler,
+    onFilterByTagHandler,
+    onResetTagFilterHandler
   }
 }

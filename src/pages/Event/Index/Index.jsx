@@ -7,11 +7,13 @@ import { EventAndTagBanner } from "./components/EventAndTagBanner"
 import { EventList } from "./components/EventList"
 import { FilterByType } from "./components/FilterByType"
 import { FilterByStatus } from "./components/FilterByStatus"
+import { FilterByTag } from "./components/FilterByTag"
 
 export const EventListingPage = () => {
   const { 
     isLoading,
     eventLists,
+    tags,
     isGoogleDocSelected,
     isLinkSelected,
     isPdfSelected,
@@ -27,7 +29,9 @@ export const EventListingPage = () => {
     onDraftEventHandler,
     onPublishEventHandler,
     onUnPublishEventHandler,
-    onResetStatusFilterHandler
+    onResetStatusFilterHandler,
+    onFilterByTagHandler,
+    onResetTagFilterHandler
         } = useEventList()
 
   return (
@@ -68,12 +72,11 @@ export const EventListingPage = () => {
         </Grid2>
         <Grid2 xs={12} md={9}></Grid2>
         <Grid2 xs={12} md={3}>
-          <Typography
-            backgroundColor="black"
-            color="white"
-          >
-            Filter by Tags
-          </Typography>
+          <FilterByTag
+            tags={tags}
+            onFilterByTagHandler={onFilterByTagHandler}
+            onResetTagFilterHandler={onResetTagFilterHandler}
+          />
         </Grid2>
         <Grid2 xs={12} md={9}>
           {isLoading && <p>Loading....</p>}
