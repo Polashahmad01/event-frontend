@@ -9,17 +9,17 @@ import { FilterByType } from "./components/FilterByType"
 
 export const EventListingPage = () => {
   const { 
-    isLoading, 
+    isLoading,
+    eventLists,
     isGoogleDocSelected,
     isLinkSelected,
     isPdfSelected,
     isYouTubeVideoSelected,
-    setIsGoogleDocSelected,
-    setIsLinkSelected,
-    setIsPdfSelected,
-    setIsYouTubeVideoSelected,
-    eventLists,
-    setFilter
+    onGoogleDocChangeHandler,
+    onLinkChangeHandler,
+    onPdfChangeHandler,
+    onYouTubeVideoChangeHandler,
+    onResetTypeFilterHanlder
         } = useEventList()
 
   return (
@@ -28,15 +28,15 @@ export const EventListingPage = () => {
       <Grid2 container marginTop={4} columnSpacing={6}>
         <Grid2 xs={12} md={3}>
           <FilterByType
-            setFilter={setFilter}
             isGoogleDocSelected={isGoogleDocSelected}
-            setIsGoogleDocSelected={setIsGoogleDocSelected}
+            onGoogleDocChangeHandler={onGoogleDocChangeHandler}
             isLinkSelected={isLinkSelected}
-            setIsLinkSelected={setIsLinkSelected}
+            onLinkChangeHandler={onLinkChangeHandler}
             isPdfSelected={isPdfSelected}
-            setIsPdfSelected={setIsPdfSelected}
+            onPdfChangeHandler={onPdfChangeHandler}
             isYouTubeVideoSelected={isYouTubeVideoSelected}
-            setIsYouTubeVideoSelected={setIsYouTubeVideoSelected}
+            onYouTubeVideoChangeHandler={onYouTubeVideoChangeHandler}
+            onResetTypeFilterHanlder={onResetTypeFilterHanlder}
           />
         </Grid2>
         <Grid2 xs={12} md={9}>
