@@ -149,6 +149,20 @@ const eventReducer = (state, action) => {
     }
   }
 
+  if(action.type === "GET_EVENTS_BY_TAG_ID") {
+    return {
+      ...state,
+      tags: state.tags.concat(action.payload)
+    }
+  }
+
+  if(action.type === "RESET_TAG_FILTER") {
+    return {
+      ...state,
+      tags: []
+    }
+  }
+
   return INITIAL_FILTER_DATA
 }
 
@@ -219,6 +233,14 @@ export const useFilterByTypeStatusAndSearch = () => {
     eventDispatch({ type: "RESET_STATUS_FILTER" })
   }
 
+  const filterByTagHandler = (tagId) => {
+    eventDispatch({ type: "GET_EVENTS_BY_TAG_ID", payload: tagId })
+  }
+
+  const resetTagFilterHandler = () => {
+    eventDispatch({ type: "RESET_TAG_FILTER"})
+  }
+
   return {
     eventState,
     isGoogleDocSelected: eventState.isGoogleDocSelected,
@@ -236,6 +258,8 @@ export const useFilterByTypeStatusAndSearch = () => {
     onDraftEventHandler: draftEventHandler,
     onPublishEventHandler: publishEventHandler,
     onUnPublishEventHandler: unPublishEventHandler,
-    onResetStatusFilterHandler: resetStatusFilterHandler
+    onResetStatusFilterHandler: resetStatusFilterHandler,
+    onFilterByTagHandler: filterByTagHandler,
+    onResetTagFilterHandler: resetTagFilterHandler
   }
 }
