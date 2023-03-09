@@ -163,13 +163,6 @@ const eventReducer = (state, action) => {
     }
   }
 
-  if(action.type === "EXECUTE_SEARCH") {
-    return {
-      ...state,
-      query: action.payload
-    }
-  }
-
   return INITIAL_FILTER_DATA
 }
 
@@ -248,10 +241,6 @@ export const useFilterByTypeStatusAndSearch = () => {
     eventDispatch({ type: "RESET_TAG_FILTER"})
   }
 
-  const executeSearch = (searchTerm) => {
-    eventDispatch({ type: "EXECUTE_SEARCH", payload: searchTerm })
-  }
-
   return {
     eventState,
     isGoogleDocSelected: eventState.isGoogleDocSelected,
@@ -271,7 +260,6 @@ export const useFilterByTypeStatusAndSearch = () => {
     onUnPublishEventHandler: unPublishEventHandler,
     onResetStatusFilterHandler: resetStatusFilterHandler,
     onFilterByTagHandler: filterByTagHandler,
-    onResetTagFilterHandler: resetTagFilterHandler,
-    onExecuteSearch: executeSearch
+    onResetTagFilterHandler: resetTagFilterHandler
   }
 }
