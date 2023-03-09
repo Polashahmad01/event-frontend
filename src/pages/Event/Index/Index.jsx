@@ -52,14 +52,7 @@ export const EventListingPage = () => {
             isYouTubeVideoSelected={isYouTubeVideoSelected}
             onYouTubeVideoChangeHandler={onYouTubeVideoChangeHandler}
             onResetTypeFilterHanlder={onResetTypeFilterHanlder}
-          />
-        </Grid2>
-        <Grid2 xs={12} md={9}>
-          <FilterBySearch
-            onExecuteSearch={onExecuteSearch}
-          />
-        </Grid2>
-        <Grid2 xs={12} md={3}>
+          /> 
           <FilterByStatus
             isDraftSelected={isDraftSelected}
             onDraftEventHandler={onDraftEventHandler}
@@ -69,9 +62,6 @@ export const EventListingPage = () => {
             onUnPublishEventHandler={onUnPublishEventHandler}
             onResetStatusFilterHandler={onResetStatusFilterHandler}
           />
-        </Grid2>
-        <Grid2 xs={12} md={9}></Grid2>
-        <Grid2 xs={12} md={3}>
           <FilterByTag
             tags={tags}
             onFilterByTagHandler={onFilterByTagHandler}
@@ -79,6 +69,13 @@ export const EventListingPage = () => {
           />
         </Grid2>
         <Grid2 xs={12} md={9}>
+          <Box
+            marginBottom={3}
+          >
+            <FilterBySearch
+              onExecuteSearch={onExecuteSearch}
+            />
+          </Box>
           {isLoading && <p>Loading....</p>}
           {hasEvents && !isLoading && <EmptyNotFound text="No events found. Please try again" />}
           {!isLoading && <EventList eventLists={eventLists} />}
