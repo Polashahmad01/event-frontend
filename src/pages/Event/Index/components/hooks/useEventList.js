@@ -28,7 +28,8 @@ export const useEventList = () => {
     onUnPublishEventHandler,
     onResetStatusFilterHandler,
     onFilterByTagHandler,
-    onResetTagFilterHandler
+    onResetTagFilterHandler,
+    onExecuteSearch
         } = useFilterByTypeStatusAndSearch()
 
   const fetchAllEvents = async () => {
@@ -86,6 +87,7 @@ export const useEventList = () => {
     onUnPublishEventHandler,
     onResetStatusFilterHandler,
     onFilterByTagHandler,
-    onResetTagFilterHandler
+    onResetTagFilterHandler,
+    onExecuteSearch
   }
 }
