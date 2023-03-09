@@ -7,6 +7,7 @@ export const useEventList = () => {
   const [eventLists, setEventLists] = useState([])
   const [tags, setTags] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const hasEvents = eventLists.length === 0
   const eventHttpClient = useMemo(() => new EventHttpClient())
   const { 
     eventState,
@@ -67,6 +68,7 @@ export const useEventList = () => {
     isLoading,
     eventLists,
     tags,
+    hasEvents,
     isGoogleDocSelected,
     isLinkSelected,
     isPdfSelected,

@@ -8,11 +8,13 @@ import { EventList } from "./components/EventList"
 import { FilterByType } from "./components/FilterByType"
 import { FilterByStatus } from "./components/FilterByStatus"
 import { FilterByTag } from "./components/FilterByTag"
+import { EmptyNotFound } from "../../../components/EmptyNotFound"
 
 export const EventListingPage = () => {
   const { 
     isLoading,
     eventLists,
+    hasEvents,
     tags,
     isGoogleDocSelected,
     isLinkSelected,
@@ -80,6 +82,7 @@ export const EventListingPage = () => {
         </Grid2>
         <Grid2 xs={12} md={9}>
           {isLoading && <p>Loading....</p>}
+          {hasEvents && !isLoading && <EmptyNotFound text="No events found. Please try again" />}
           {!isLoading && <EventList eventLists={eventLists} />}
         </Grid2>
       </Grid2>
