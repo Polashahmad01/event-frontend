@@ -59,11 +59,22 @@ export const useEventList = () => {
 
   useEffect(() => {
     fetchAllEvents()
-  },[eventState])
+  },[eventState.eventTypes, eventState.statuses, eventState.tags])
 
   useEffect(() => {
     fetchAllTags()
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchAllEvents()
+    }, 500)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [eventState.query])
+
 
   return {
     isLoading,
