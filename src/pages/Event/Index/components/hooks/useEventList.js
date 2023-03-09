@@ -28,7 +28,8 @@ export const useEventList = () => {
     onUnPublishEventHandler,
     onResetStatusFilterHandler,
     onFilterByTagHandler,
-    onResetTagFilterHandler
+    onResetTagFilterHandler,
+    onExecuteSearch
         } = useFilterByTypeStatusAndSearch()
 
   const fetchAllEvents = async () => {
@@ -58,11 +59,22 @@ export const useEventList = () => {
 
   useEffect(() => {
     fetchAllEvents()
-  },[eventState])
+  },[eventState.eventTypes, eventState.statuses, eventState.tags])
 
   useEffect(() => {
     fetchAllTags()
   }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchAllEvents()
+    }, 500)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [eventState.query])
+
 
   return {
     isLoading,
@@ -86,6 +98,7 @@ export const useEventList = () => {
     onUnPublishEventHandler,
     onResetStatusFilterHandler,
     onFilterByTagHandler,
-    onResetTagFilterHandler
+    onResetTagFilterHandler,
+    onExecuteSearch
   }
 }

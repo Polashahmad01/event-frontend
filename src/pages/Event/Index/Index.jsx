@@ -1,6 +1,5 @@
 import { Box } from "@mui/system"
 import Grid2 from "@mui/material/Unstable_Grid2"
-import Typography from "@mui/material/Typography"
 
 import { useEventList } from "./components/hooks/useEventList"
 import { EventAndTagBanner } from "./components/EventAndTagBanner"
@@ -8,6 +7,7 @@ import { EventList } from "./components/EventList"
 import { FilterByType } from "./components/FilterByType"
 import { FilterByStatus } from "./components/FilterByStatus"
 import { FilterByTag } from "./components/FilterByTag"
+import { FilterBySearch } from "./components/FilterBySearch"
 import { EmptyNotFound } from "../../../components/EmptyNotFound"
 
 export const EventListingPage = () => {
@@ -33,7 +33,8 @@ export const EventListingPage = () => {
     onUnPublishEventHandler,
     onResetStatusFilterHandler,
     onFilterByTagHandler,
-    onResetTagFilterHandler
+    onResetTagFilterHandler,
+    onExecuteSearch
         } = useEventList()
 
   return (
@@ -54,12 +55,9 @@ export const EventListingPage = () => {
           />
         </Grid2>
         <Grid2 xs={12} md={9}>
-          <Typography
-            backgroundColor="black"
-            color="white"
-          >
-            Search Bar
-          </Typography>
+          <FilterBySearch
+            onExecuteSearch={onExecuteSearch}
+          />
         </Grid2>
         <Grid2 xs={12} md={3}>
           <FilterByStatus
