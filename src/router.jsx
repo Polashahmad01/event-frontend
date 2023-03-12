@@ -8,6 +8,7 @@ import { CreateNewEventPage } from "./pages/Event/CreateEvent/Index"
 import { EventDetailPage } from "./pages/Event/EventDetail/Index"
 import { EditEventPage } from "./pages/Event/EditEvent/Index"
 import { TagIndexPage } from "./pages/Tag/Index"
+import { SignUpPage } from "./pages/Signup/Index"
 import { EventDetailPublic } from "./pages/Home/components/EventDetailPublic"
 import { RecommendedEventDetail } from "./pages/Home/components/RecommendedEvent/RecommendedEventDetail"
 import { PrivateRecommendedEventDetail } from "./pages/Event/EventDetail/components/PrivateRecommendedEventDetail/PrivateRecommendedEventDetail"
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />
+      },
+      {
+        path: "signup",
+        element: <SignUpPage />
       },
       {
         path: "event",
