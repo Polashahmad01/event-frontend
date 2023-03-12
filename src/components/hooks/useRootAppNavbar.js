@@ -4,7 +4,8 @@ import { useState } from "react"
 const pages = [
   { id: 'v1', label: 'Home', to: '/' },
   { id: 'v2', label: 'Event', to: '/event'},
-  { id: 'v3', label: 'Signup', to: '/signup'}
+  { id: 'v3', label: 'Signup', to: '/signup'},
+  { id: 'v4', label: 'Signin', to: '/signin'}
 ]
 const settings = ['logout']
 
