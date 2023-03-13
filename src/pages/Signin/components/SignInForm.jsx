@@ -9,7 +9,7 @@ import { TextFieldWrapper } from "../../../components/form/TextField"
 import { useSignInForm } from "./hooks/useSignInForm"
 
 export const SignInForm = () => {
-  const { initalFormState, formValidation, onSignInFormHandler } = useSignInForm()
+  const { initalFormState, formValidation, emailNotFound, invalidPassword, onSignInFormHandler } = useSignInForm()
 
   return (
     <Box
@@ -50,6 +50,7 @@ export const SignInForm = () => {
               <TextFieldWrapper
                 name="emailAddress"
                 label="Email address"
+                type="email"
               />
             </Box>
             <Box>
@@ -98,6 +99,10 @@ export const SignInForm = () => {
                 Don't have an account? &nbsp;
                 <Link to="/signup">Sign up for free</Link>
               </Typography>
+            </Box>
+            <Box>
+              {emailNotFound && <Typography textAlign="center">User not found</Typography>}
+              {invalidPassword && <Typography textAlign="center">Invalid password</Typography>}
             </Box>
           </Stack>
         </Form>
