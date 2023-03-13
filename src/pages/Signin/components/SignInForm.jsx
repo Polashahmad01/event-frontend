@@ -1,8 +1,9 @@
 import { Formik, Form } from "formik"
+import { Link } from "react-router-dom"
 import { Box } from "@mui/system"
-import Grid2 from "@mui/material/Unstable_Grid2"
 import { Button } from "@mui/material"
 import { Typography } from "@mui/material"
+import Stack from "@mui/material/Stack"
 
 import { TextFieldWrapper } from "../../../components/form/TextField"
 import { useSignInForm } from "./hooks/useSignInForm"
@@ -29,20 +30,47 @@ export const SignInForm = () => {
         onSubmit={onSignInFormHandler}
       >
         <Form>
-          <Grid2 container rowSpacing={2}>
-            <Grid2 xs={12}>
+          <Stack spacing={2}>
+            <Box paddingRight={26}>
+              <Typography
+                component="p"
+                variant="body"
+              >
+                Welcome back
+              </Typography>
+              <Typography
+                component="h2"
+                variant="h5"
+                fontWeight={700}
+              >
+                Login to your account
+              </Typography>
+            </Box>
+            <Box>
               <TextFieldWrapper
                 name="emailAddress"
                 label="Email address"
               />
-            </Grid2>
-            <Grid2 xs={12}>
+            </Box>
+            <Box>
               <TextFieldWrapper
                 name="password"
                 label="Password"
+                type="password"
               />
-            </Grid2>
-            <Grid2 xs={12}>
+            </Box>
+            <Box>
+              <Link to="/">
+                <Typography
+                  textAlign="end"
+                  component="p"
+                  variant="body2"
+                >
+                  Forgot password?
+                </Typography>
+              </Link>
+            </Box>
+            <Box>
               <Button
                 type="submit"
                 fullWidth={true}
@@ -51,8 +79,7 @@ export const SignInForm = () => {
                   padding: "0.7rem 1rem",
                   borderRadius: "4px",
                   border: "none",
-                  fontWeight: "500",
-                  fontSize: "0.8rem",
+                  fontWeight: "700",
                   textTransform: "revert",
                   backgroundColor: "black",
                   color: "white",
@@ -63,10 +90,16 @@ export const SignInForm = () => {
                   }
                 }}
               >
-                Sign In
+                Login
               </Button>
-            </Grid2>
-          </Grid2>
+            </Box>
+            <Box>
+              <Typography textAlign="center">
+                Don't have an account? &nbsp;
+                <Link to="/signup">Sign up for free</Link>
+              </Typography>
+            </Box>
+          </Stack>
         </Form>
       </Formik>
     </Box>
