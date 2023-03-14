@@ -9,7 +9,7 @@ import { TextFieldWrapper } from "../../../components/form/TextField"
 import { useSignUpForm } from "./hooks/useSignUpForm"
 
 export const SignUpForm = () => {
-  const { initialFormState, formValidation, onSignUpFormHandler } = useSignUpForm()
+  const { initialFormState, formValidation, invalidEmail, invalidPassword, onSignUpFormHandler } = useSignUpForm()
 
   return (
     <Box
@@ -78,14 +78,6 @@ export const SignUpForm = () => {
             </Box>
 
             <Box>
-              <TextFieldWrapper
-                name="confirmPassword"
-                label="Confirm password"
-                type="password"
-              />
-            </Box>
-
-            <Box>
               <Button
                 type="submit"
                 fullWidth={true}
@@ -114,6 +106,11 @@ export const SignUpForm = () => {
                 Don't have an account? &nbsp;
                 <Link to="/signin">Log in</Link>
               </Typography>
+            </Box>
+
+            <Box>
+              {invalidEmail && <Typography textAlign="center">Invalid email address</Typography>}
+              {invalidPassword && <Typography textAlign="center">Invalid password format</Typography>}
             </Box>
 
           </Stack>
